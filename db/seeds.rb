@@ -18,7 +18,7 @@ puts "test@test.com"
 puts ""
 
 # Creating 10 users and 2 images each
-10.times do
+2.times do
   user = User.create!(
     username: Faker::Internet.username,
     email: Faker::Internet.email,
@@ -32,9 +32,9 @@ puts ""
       options: %w[trees bicycle cafe green mural].sample
     )
     puts "Img Adddress: #{image.address}"
-    image.photo.attach(io: File.open(Rails.root.join("app/assets/images/#{rand(1..5)}.jpg")), filename: "#{img_id}.jpg")
+    image.before_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{rand(1..5)}.jpg")), filename: "#{image.id}.jpg")
     image.save!
-    puts "Photo attached? #{Image.photo.attached?}"
+    # puts "Photo attached? #{Image.before_photo.attached?}"
   end
   puts "------------------------------------------"
 end
