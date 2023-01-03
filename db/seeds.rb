@@ -17,14 +17,16 @@ test_user = User.create!(
 puts "test@test.com"
 puts ""
 
-# Creating 10 users and 2 images each
-2.times do
+# Creating 10 users
+10.times do
   user = User.create!(
     username: Faker::Internet.username,
     email: Faker::Internet.email,
     password: "123456",
   )
   puts "Creating User: #{user.username}"
+
+  # Creating 2 images per user
   2.times do
     image = Image.create!(
       user_id: user.id,
@@ -32,9 +34,24 @@ puts ""
       options: %w[trees bicycle cafe green mural].sample
     )
     puts "Img Adddress: #{image.address}"
-    image.before_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{rand(1..5)}.jpg")), filename: "#{image.id}.jpg")
+    # setting random number for image asset
+    image_no = rand(1..5)
+    # Before photo
+    image.before_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{image_no}.jpg")), filename: "#{image.id}-before.jpg")
     image.save!
-    # puts "Photo attached? #{Image.before_photo.attached?}"
+    puts "Before photo attached"
+    # After photo
+    image.after_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{image_no}-2.jpg")), filename: "#{image.id}-after.jpg")
+    image.save!
+    puts "After photo attached"
+    # Creating 2 comments per photo
+    2.times do
+      comment = Comment.create!(
+        user_id: User.all.sample.id,
+        image_id: image.id,
+        text: Faker::Restaurant.review
+      )
+    end
   end
   puts "------------------------------------------"
 end
