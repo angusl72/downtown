@@ -31,7 +31,7 @@ puts ""
     image = Image.create!(
       user_id: user.id,
       address: Faker::Address.full_address,
-      options: %w[trees bicycle cafe green mural].sample
+      options: Array.new([%w[trees bicycle cafe green mural].sample])
     )
     puts "Img Adddress: #{image.address}"
     # setting random number for image asset
