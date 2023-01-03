@@ -34,6 +34,7 @@ class ImagesController < ApplicationController
 
   def set_image
     @image = Image.find(params[:id])
+    authorize @image
   end
 
   def image_params
