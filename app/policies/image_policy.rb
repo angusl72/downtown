@@ -4,8 +4,9 @@ class ImagePolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
 
-    def show?
+  def show?
       true
     end
 
@@ -28,6 +29,4 @@ class ImagePolicy < ApplicationPolicy
     def update?
       edit?
     end
-
-  end
 end
