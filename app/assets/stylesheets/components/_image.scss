@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.card-product {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.user-details {
+  height: 55px;
+  width: 650px;
+  border: solid;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+    p {
+      font-size: 12px;
+      line-height: 1.4;
+      margin-bottom: 0;
+      margin-left: 8px;
+    }
+}
+
+.comment {
+  height: 265px;
+  width: 650px;
+  border: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map {
+  height: 265px;
+  width: 650px;
+  border: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
