@@ -5,4 +5,5 @@ class Image < ApplicationRecord
   has_one_attached :after_photo
   # data validations - TO DO
 
+  OPTIONS = ["Trees", "Bicycles", "Cafe", "Greenery", "Mural", "Colour", "Flowers", "Colourful Lights", "Snow"]
 end

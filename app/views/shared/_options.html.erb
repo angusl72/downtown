@@ -1,0 +1,7 @@
+<%= simple_form_for @image do |f| %>
+  <%= f.input :options, :label => "Select your design options",
+              as: :check_boxes,
+              input_html: { class: "tag-selector" },
+              item_wrapper_class: 'tag-item',
+              collection: Image::OPTIONS %>
+<% end %>
