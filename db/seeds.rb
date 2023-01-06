@@ -12,17 +12,19 @@ puts "Creating Test account.."
 test_user = User.create!(
   email: "test@test.com",
   password: "123456",
-  username: "test"
+  username: "test",
+  city: "Sydney, Australia"
 )
 puts "test@test.com"
 puts ""
 
 # Creating 10 users
-10.times do
+4.times do
   user = User.create!(
     username: Faker::Internet.username,
     email: Faker::Internet.email,
     password: "123456",
+    city: "Sydney, Australia"
   )
   puts "Creating User: #{user.username}"
 
