@@ -15,9 +15,6 @@
 }
 
 .user-details {
-  height: 55px;
-  width: 650px;
-  border: solid;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -29,13 +26,10 @@
     }
 }
 
-.comment {
-  height: 265px;
-  width: 650px;
-  border: solid;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+
+.comments-container {
+  height: 300px
 }
 
 .map {
