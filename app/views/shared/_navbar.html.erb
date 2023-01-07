@@ -1,8 +1,8 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" data-controller="searchbox">
   <div class="container-fluid">
     <%= link_to "Downtown.ai", root_path, class: "navbar-brand" %>
 
-    <form class="form-inline">
+    <form class="form-inline" data-search-target="searchbarNav" data-action="click->searchbox#searchbarDropdown">
       <input class="form-control me-2 navbar-form" type="search" placeholder="Type an address..." aria-label="Search">
     </form>
 
