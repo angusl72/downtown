@@ -5,13 +5,14 @@ export default class extends Controller {
 
   connect() {
     console.log("searchbox stimulus controller connected")
+
   }
 
   searchAddress(event) {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
 
-    const apiKey = 'AIzaSyCifna2UMzhKzboAu2SK3Fedzeq-r9LSFc';
+    const apiKey = 'AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8';
     const startingHeading = Math.floor(Math.random() * 91)
 
     //define our address
@@ -54,7 +55,6 @@ export default class extends Controller {
     for (const x of Array(5).keys()) {
       console.log('getting images.')
       let streetImg = document.createElement('div')
-      streetImg.setAttribute("id", `img-${x}`)
       streetImg.classList.add("col")
 
       streetImg.innerHTML = `
