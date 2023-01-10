@@ -37,8 +37,8 @@
     </div>
     <div class="card-product">
       <div class="user-details m-3 rounded">
-      <p> <strong><%= @image.user.username.capitalize %></strong> </p>
-      <p>📍 User city</p>
+      <p> <strong><%= link_to @image.user.username.capitalize, user_path(@image.user.id) %></strong> </p>
+      <p>📍 <%= @image.user.city %></p>
       </div>
       <div class=" container-fluid py-2">
         <div class="d-flex flex-column flex-nowrap overflow-auto comments-container">
