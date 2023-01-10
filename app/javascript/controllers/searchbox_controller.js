@@ -11,7 +11,7 @@ export default class extends Controller {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
 
-    const apiKey = 'AIzaSyCifna2UMzhKzboAu2SK3Fedzeq-r9LSFc';
+    const apiKey = 'test';
     const startingHeading = Math.floor(Math.random() * 91)
 
     //define our address
@@ -54,16 +54,15 @@ export default class extends Controller {
     for (const x of Array(5).keys()) {
       console.log('getting images.')
       let streetImg = document.createElement('div')
-      streetImg.setAttribute("id", `img-${x}`)
+      streetImg.classList.add("col")
+      // streetImg.setAttribute("id", `img-${x}`)
       streetImg.classList.add("col")
 
       streetImg.innerHTML = `
-      <div class="col">
         <label for="img-${x}">
           <input id="img-${x}" type="radio" name="img-selection" value="img-${x}">
             <img src="${fetchStreetImage(x, query)}" class="rounded img-search" alt="img-${x}">
-        </label>
-      </div>`
+        </label>`
 
       //append each image to our subcontainer
       imagesSubContainer.appendChild(streetImg)
