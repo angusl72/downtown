@@ -41,5 +41,4 @@ class ImagesController < ApplicationController
     params.require(:image).permit(:address, :options)
   end
 
-
 end
