@@ -19,6 +19,11 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     @image.user = current_user
     authorize @image
+    if @image.save
+      redirect_to @image, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -38,7 +43,7 @@ class ImagesController < ApplicationController
   end
 
   def image_params
-    params.require(:image).permit(:address, :options)
+    params.require(:image).permit(:before_photo, :address, options: [])
   end
 
 

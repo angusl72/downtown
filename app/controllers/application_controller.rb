@@ -13,7 +13,13 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  before_action :image_for_navbar_search
+
   private
+
+  def image_for_navbar_search
+    @navbar_image = Image.new
+  end
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/

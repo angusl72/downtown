@@ -60,7 +60,7 @@ export default class extends Controller {
       streetImg.innerHTML = `
       <div class="col">
         <label for="img-${x}">
-          <input id="img-${x}" type="radio" name="img-selection" value="img-${x}">
+          <input id="img-${x}" type="radio" name="image[before_photo]" value="${fetchStreetImage(x, query)}">
             <img src="${fetchStreetImage(x, query)}" class="rounded img-search" alt="img-${x}">
         </label>
       </div>`
