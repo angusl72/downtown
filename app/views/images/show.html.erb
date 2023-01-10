@@ -57,7 +57,8 @@
         </div>
       </div>
       <div class="map m-3 rounded">
-        <h2>Map</h2>
+      <h2></h2>
+      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@image.address}&size=1000x800&zoom=15&key=#{Rails.application.credentials.google_api_key}&markers=size:small%7Ccolor:red%7Clabel:C%7C", width: 700, height: 250 %>
       </div>
     </div>
   </div>
