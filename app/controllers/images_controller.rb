@@ -18,6 +18,11 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     @image.user = current_user
+
+    gen_image = @image.generate_image_variations
+    base64 = Base64.encode64(gen_image).split("\n").join
+
+    @image.after_photo.attach(data: "data:image/png;base64,#{[base64]}", filename: "after.jpg") # https://github.com/rootstrap/active-storage-base64
     authorize @image
     if @image.save
       redirect_to @image, status: :see_other
