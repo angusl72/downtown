@@ -19,7 +19,22 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     @image.user = current_user
+
+    gen_image = @image.generate_image_variations
+    # base64 = Base64.encode64(gen_image).split("\n").join
+    blob = Base64.decode64(gen_image)
+    image = MiniMagick::Image.read(blob)
+    image.write("image.jpg")
+    # @image.after_photo.attach()
+    @image.after_photo.attach(io: File.open("image.jpg"), filename: "image.jpg", content_type: "image/jpeg")
+    # raise
+    # @image.after_photo.attach(data: "data:image/png;base64,#{[base64]}", filename: "after.jpg") # https://github.com/rootstrap/active-storage-base64
     authorize @image
+    if @image.save
+      redirect_to @image, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -39,7 +54,7 @@ class ImagesController < ApplicationController
   end
 
   def image_params
-    params.require(:image).permit(:address, :options)
+    params.require(:image).permit(:before_photo, :address, options: [])
   end
 
 end

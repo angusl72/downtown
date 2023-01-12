@@ -5,13 +5,15 @@ export default class extends Controller {
 
   connect() {
     console.log("searchbox stimulus controller connected")
+
   }
 
   searchAddress(event) {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
 
-    const apiKey = 'test';
+    const apiKey = 'AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8';
+
     const startingHeading = Math.floor(Math.random() * 91)
 
     //define our address
@@ -55,12 +57,10 @@ export default class extends Controller {
       console.log('getting images.')
       let streetImg = document.createElement('div')
       streetImg.classList.add("col")
-      // streetImg.setAttribute("id", `img-${x}`)
-      streetImg.classList.add("col")
 
       streetImg.innerHTML = `
         <label for="img-${x}">
-          <input id="img-${x}" type="radio" name="img-selection" value="img-${x}">
+          <input id="img-${x}" type="radio" name="image[before_photo]" value="${fetchStreetImage(x, query)}">
             <img src="${fetchStreetImage(x, query)}" class="rounded img-search" alt="img-${x}">
         </label>`
 
