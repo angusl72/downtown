@@ -39,7 +39,8 @@ puts ""
     # setting random number for image asset
     image_no = rand(1..5)
     # Before photo
-    image.before_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{image_no}.jpg")), filename: "#{image.id}-before.jpg")
+    # image.before_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{image_no}.jpg")), filename: "#{image.id}-before.jpg")
+    image.before_photo = ["https://maps.googleapis.com/maps/api/streetview?size=640x400&location=161%20Richardson%20St&key=AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8", "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=13%20rickard%20ave&key=AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8", "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=103%20canning%20st&key=AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8", "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=1&location=103%20canning%20st&key=AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8", "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=90&location=161%20collins%20st%20melbourne&key=AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8"].sample
     image.save!
     puts "Before photo attached"
     # After photo
