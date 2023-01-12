@@ -37,8 +37,8 @@
     </div>
     <div class="card-product">
       <div class="user-details m-3 rounded">
-      <p> <strong><%= @image.user.username.capitalize %></strong> </p>
-      <p>📍 User city</p>
+      <p> <strong><%= link_to @image.user.username.capitalize, user_path(@image.user.id) %></strong> </p>
+      <p>📍 <%= @image.user.city %></p>
       </div>
       <div class=" container-fluid py-2">
         <div class="d-flex flex-column flex-nowrap overflow-auto comments-container">
@@ -55,9 +55,11 @@
             </div>
           <% end %>
         </div>
+          <%= render partial: 'comments/form' %>
       </div>
       <div class="map m-3 rounded">
-        <h2>Map</h2>
+      <h2></h2>
+      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@image.address}&size=1000x800&zoom=15&key=#{Rails.application.credentials.google_api_key}&markers=size:small%7Ccolor:red%7Clabel:C%7C", width: 700, height: 250 %>
       </div>
     </div>
   </div>

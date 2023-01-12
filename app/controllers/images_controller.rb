@@ -8,6 +8,7 @@ class ImagesController < ApplicationController
 
   def show
     authorize @image
+    @comment = Comment.new # We need it as the form to add a comment will be embeded in the show page
   end
 
   def new
@@ -55,6 +56,5 @@ class ImagesController < ApplicationController
   def image_params
     params.require(:image).permit(:before_photo, :address, options: [])
   end
-
 
 end
