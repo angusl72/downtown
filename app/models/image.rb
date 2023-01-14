@@ -5,16 +5,23 @@ class Image < ApplicationRecord
   has_one_attached :before_photo
   has_one_base64_attached :after_photo
   # data validations - TO DO
-  # after_create :generate_image_variations
+  after_create :attach_before_photo
 
   OPTIONS = ["Trees", "Bicycles", "Cafe", "Greenery", "Mural", "Colour", "Flowers", "Colourful Lights", "Snow"]
+
+  private
+
+  def attach_before_photo
+    before_photo_data = URI.parse(before_photo_base_url).open
+    before_photo.attach(io: before_photo_data, filename: "before_photo_#{id}.jpg")
+  end
 
   def generate_image_variations
     # use before_photo_base_url to generate variations using api
     # Api returns json with image information (save this image to after_photo)
     # debugger
 
-    image = MiniMagick::Image.open(self.before_photo_base_url)
+    image = MiniMagick::Image.open(before_photo_base_url)
     image.format "PNG"
     image.resize('512x512')
 

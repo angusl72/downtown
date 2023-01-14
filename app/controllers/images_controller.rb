@@ -23,10 +23,9 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     @image.user = current_user
 
-    # save our before photo
-    before_photo_data = URI.parse(@image.before_photo_base_url).open
-    @image.before_photo.attach(io: before_photo_data, filename: "before_photo_#{@image_id}.jpg")
-    puts @image.before_photo.attached?
+    # save the image so that the before_photo is attached, otherwise it cannot be accessed.
+    @image.save!
+
     gen_image = @image.generate_image_variations
     # base64 = Base64.encode64(gen_image).split("\n").join
     blob = Base64.decode64(gen_image)
@@ -42,6 +41,7 @@ class ImagesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+    puts "----- BEFORE PHOTO ATTACHED: #{@image.before_photo.attached?} ----"
   end
 
   def destroy
