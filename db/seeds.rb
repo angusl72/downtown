@@ -9,14 +9,15 @@ Image.destroy_all
 Comment.destroy_all
 puts ""
 puts "Creating Test account.."
-test_user = User.create!(
+
+# Create test user
+User.create!(
   email: "test@test.com",
   password: "123456",
   username: "test",
   city: "Sydney, Australia"
 )
-puts "test@test.com"
-puts ""
+puts "Test User Created"
 
 # Creating 10 users
 4.times do
@@ -36,20 +37,31 @@ puts ""
       options: Array.new([%w[trees bicycle cafe green mural].sample])
     )
     puts "Img Adddress: #{image.address}"
-    # setting random number for image asset
-    image_no = rand(1..5)
+
     # Before photo
+<<<<<<< HEAD
+    image.before_photo_base_url = [
+      "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=161%20Richardson%20St&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
+      "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=13%20rickard%20ave&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
+      "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=103%20canning%20st&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
+      "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=1&location=103%20canning%20st&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
+      "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=90&location=161%20collins%20st%20melbourne&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}"
+    ].sample
+=======
     # image.before_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{image_no}.jpg")), filename: "#{image.id}-before.jpg")
     image.before_photo = ["https://maps.googleapis.com/maps/api/streetview?size=640x400&location=161%20Richardson%20St&key=#{ENV.fetch("STREET_VIEW_API")}", "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=13%20rickard%20ave&key=#{ENV.fetch("STREET_VIEW_API")}", "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=103%20canning%20st&key=#{ENV.fetch("STREET_VIEW_API")}", "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=1&location=103%20canning%20st&key=#{ENV.fetch("STREET_VIEW_API")}", "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=90&location=161%20collins%20st%20melbourne&key=#{ENV.fetch("STREET_VIEW_API")}"].sample
+>>>>>>> master
     image.save!
-    puts "Before photo attached"
+    puts "Before photo attached:  #{image.before_photo.attached?}"
+
     # After photo
-    image.after_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{image_no}-2.jpg")), filename: "#{image.id}-after.jpg")
+    image.after_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{rand(1..5)}-2.jpg")), filename: "#{image.id}-after.jpg")
     image.save!
-    puts "After photo attached"
+    puts "After photo attached: #{image.after_photo.attached?}"
+
     # Creating 2 comments per photo
     2.times do
-      comment = Comment.create!(
+      Comment.create!(
         user_id: User.all.sample.id,
         image_id: image.id,
         text: Faker::Restaurant.review
@@ -59,5 +71,6 @@ puts ""
   puts "------------------------------------------"
 end
 
-puts""
-puts "Finished!"
+puts "-----------------"
+puts "---------FINISHED SEEDS!---------"
+puts "-----------------"
