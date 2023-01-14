@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer']
+  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton']
 
   connect() {
     console.log("searchbox stimulus controller connected")
@@ -71,8 +71,20 @@ export default class extends Controller {
     //append street images to our container
     imagesContainer.appendChild(imagesSubContainer)
 
+    //display the hidden searchbox overlay
+    // this.searchOverlayContainerTarget.classList.remove('hidden')
+    this.searchOverlayContainerTarget.classList.add('open')
+
+
+
+
+
     //display the hidden options
     const optionsContainer = this.optionsContainerTarget
     optionsContainer.classList.remove('hidden')
+  }
+
+  closeButton(event) {
+    this.searchOverlayContainerTarget.classList.remove('open')
   }
 }

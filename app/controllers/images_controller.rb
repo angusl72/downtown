@@ -28,7 +28,7 @@ class ImagesController < ApplicationController
     @image.before_photo.attach(io: before_photo_data, filename: "before_photo_#{@image_id}.jpg")
 
     gen_image = @image.generate_image_variations
-    # base64 = Base64.encode64(gen_image).split("\n").join
+    # base64 = Base64.encode64(gen_image).split("\n").join # This is for text to image functionality not currently in use
     blob = Base64.decode64(gen_image)
     image = MiniMagick::Image.read(blob)
     image.write("image.jpg")
