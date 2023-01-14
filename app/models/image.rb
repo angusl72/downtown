@@ -7,6 +7,9 @@ class Image < ApplicationRecord
   # data validations - TO DO
   after_create :attach_before_photo
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   OPTIONS = ["Trees", "Bicycles", "Cafe", "Greenery", "Mural", "Colour", "Flowers", "Colourful Lights", "Snow"]
 
   def attach_before_photo
