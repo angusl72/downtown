@@ -1,15 +1,8 @@
-<div class="container search-box-container d-flex p-3 flex-column align-items-center rounded" data-controller="searchbox">
-  <div class="row">
-    <form class="form-inline mb-2" data-action="submit->searchbox#searchAddress">
-      <input data-searchbox-target="addressQuery" class="form-control me-2 navbar-form" type="text" placeholder="Type an address..." aria-label="Search">
-    </form>
-  <div data-searchbox-target="imagesContainer"></div>
+<div class="container search-box-container d-flex p-3 flex-column align-items-center rounded">
+  <button type="button" class="overlay-close" data-action="click->searchbox#closeButton">Close</button>
   <div data-searchbox-target="optionsContainer" class="hidden">
     <div class="row d-flex text-center">
-      <%= render "shared/options"%>
+      <%= render "shared/options", image: @navbar_image %>
     </div>
-    <button type="button" class="btn btn-primary">Generate</button>
   </div>
-
-
 </div>

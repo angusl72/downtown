@@ -1,17 +1,19 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer']
+  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton']
 
   connect() {
     console.log("searchbox stimulus controller connected")
+
   }
 
   searchAddress(event) {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
 
-    const apiKey = 'test';
+    const apiKey = 'AIzaSyDb-GlGjN3ftlq0fqbuHmzjwgNdR0P3Wow';
+
     const startingHeading = Math.floor(Math.random() * 91)
 
     //define our address
@@ -55,12 +57,10 @@ export default class extends Controller {
       console.log('getting images.')
       let streetImg = document.createElement('div')
       streetImg.classList.add("col")
-      // streetImg.setAttribute("id", `img-${x}`)
-      streetImg.classList.add("col")
 
       streetImg.innerHTML = `
         <label for="img-${x}">
-          <input id="img-${x}" type="radio" name="img-selection" value="img-${x}">
+          <input id="img-${x}" type="radio" name="image[before_photo_base_url]" value="${fetchStreetImage(x, query)}">
             <img src="${fetchStreetImage(x, query)}" class="rounded img-search" alt="img-${x}">
         </label>`
 
@@ -71,8 +71,20 @@ export default class extends Controller {
     //append street images to our container
     imagesContainer.appendChild(imagesSubContainer)
 
+    //display the hidden searchbox overlay
+    // this.searchOverlayContainerTarget.classList.remove('hidden')
+    this.searchOverlayContainerTarget.classList.add('open')
+
+
+
+
+
     //display the hidden options
     const optionsContainer = this.optionsContainerTarget
     optionsContainer.classList.remove('hidden')
+  }
+
+  closeButton(event) {
+    this.searchOverlayContainerTarget.classList.remove('open')
   }
 }
