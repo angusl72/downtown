@@ -8,6 +8,12 @@ class ImagesController < ApplicationController
 
   def show
     authorize @image
+    @markers = @image.geocoded.map do |image|
+      {
+        lat: image.latitude,
+        lng: image.longitude
+      }
+    end
   end
 
   def new

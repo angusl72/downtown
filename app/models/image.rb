@@ -7,4 +7,6 @@ class Image < ApplicationRecord
 
   OPTIONS = ["Trees", "Bicycles", "Cafe", "Greenery", "Mural", "Colour", "Flowers", "Colourful Lights", "Snow"]
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
