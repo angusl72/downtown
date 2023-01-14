@@ -12,7 +12,7 @@ export default class extends Controller {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
 
-    const apiKey = 'AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8';
+    const apiKey = 'AIzaSyDb-GlGjN3ftlq0fqbuHmzjwgNdR0P3Wow';
 
     const startingHeading = Math.floor(Math.random() * 91)
 
@@ -60,7 +60,7 @@ export default class extends Controller {
 
       streetImg.innerHTML = `
         <label for="img-${x}">
-          <input id="img-${x}" type="radio" name="image[before_photo]" value="${fetchStreetImage(x, query)}">
+          <input id="img-${x}" type="radio" name="image[before_photo_base_url]" value="${fetchStreetImage(x, query)}">
             <img src="${fetchStreetImage(x, query)}" class="rounded img-search" alt="img-${x}">
         </label>`
 
