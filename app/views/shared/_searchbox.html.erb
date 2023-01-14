@@ -1,4 +1,5 @@
 <div class="container search-box-container d-flex p-3 flex-column align-items-center rounded">
+  <button type="button" class="overlay-close" data-action="click->searchbox#closeButton">Close</button>
   <div data-searchbox-target="optionsContainer" class="hidden">
     <div class="row d-flex text-center">
       <%= render "shared/options", image: @navbar_image %>

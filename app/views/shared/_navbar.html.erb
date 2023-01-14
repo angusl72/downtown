@@ -3,15 +3,9 @@
     <div class="container-fluid">
       <%= link_to "Downtown.ai", root_path, class: "navbar-brand" %>
 
-      <%# <form class="form-inline">
-        <input class="form-control me-2 navbar-form" type="search" placeholder="Type an address..." aria-label="Search">
-      </form> %>
-
       <form class="form-inline mb-2" data-action="submit->searchbox#searchAddress">
         <input data-searchbox-target="addressQuery" class="form-control me-2 navbar-form" type="text" placeholder="Type an address..." aria-label="Search">
       </form>
-
-      <%= button_to "New", new_image_path, method: :get, class: "btn btn-primary" %>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,7 +31,7 @@
       </div>
     </div>
   </div>
-  <div data-searchbox-target="searchOverlayContainer" class="hidden">
+  <div data-searchbox-target="searchOverlayContainer" class="overlay overlay-content">
     <%= render "shared/searchbox" %>
   </div>
 </div>
