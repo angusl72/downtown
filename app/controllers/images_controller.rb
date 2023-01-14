@@ -32,13 +32,11 @@ class ImagesController < ApplicationController
     blob = Base64.decode64(gen_image)
     image = MiniMagick::Image.read(blob)
     image.write("image.jpg")
-    # @image.after_photo.attach()
     @image.after_photo.attach(io: File.open("image.jpg"), filename: "after_photo_#{@image_id}.jpg", content_type: "image/jpeg")
-    # raise
-    # @image.after_photo.attach(data: "data:image/png;base64,#{[base64]}", filename: "after.jpg") # https://github.com/rootstrap/active-storage-base64
+    # @image.after_photo.attach(data: "data:image/png;base64,#{[base64]}", filename: "after.jpg") # This is for text to image functionality not currently in use # https://github.com/rootstrap/active-storage-base64
     authorize @image
     if @image.save
-      redirect_to @image, status: :see_other
+      redirect_to image_path('/images/new'), status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
