@@ -1,4 +1,4 @@
 <%= simple_form_for([@image, @comment]) do |f| %>
-  <%= f.input :text %>
-  <%= f.button :submit, class: 'btn btn-primary' %>
+  <%= f.input :text, label: false, placeholder: "Write your comment" %>
+  <%= f.button :submit, value: "Post", class: 'btn btn-outline-primary btn-sm', id:"submit" %>
 <% end %>
