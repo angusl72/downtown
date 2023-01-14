@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
   def index
     # Added .order here to show the newest ones first
     # also added a .limit, so we're not rendering too many images at once
+    # TODO: also need to add some logic here that only shows SAVED photos from user
     @images = policy_scope(Image).order(created_at: :desc).limit(40)
   end
 
