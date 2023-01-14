@@ -58,3 +58,50 @@
 .hidden {
   display: none;
 }
+
+
+
+
+
+
+
+
+.overlay {
+	position: fixed;
+	width: 75%;
+	height: 75%;
+	top: 5%;
+	left: 12.5%;
+}
+
+/* Overlay closing cross */
+.overlay .overlay-close {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	overflow: hidden;
+	border: none;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACiSURBVDhPYwCBwNrtLSAM5hAAGGpBnLDGvV9AmJAhWNX6VW1rBQk0rn32H58hMM0wdSB9UCnChuDVDAO4DCFKMwygG+Jfvf0I0ZphANmQpN4Tf0jSDAMgm0Gau7d/ABsC4kOlCANkPyO7AD1gsQL0AAuo2nYUmY/XEFyhjR6wWA3BpRkG8BpCSDMM4DQEJoFPMwzgVAviENIMA6SoJQIwMAAA1I4lHRFoYnYAAAAASUVORK5CYII=") no-repeat center center;
+	text-indent: 200%;
+	color: transparent;
+	outline: none;
+	z-index: 200;
+  cursor: pointer;
+}
+
+.overlay-content{
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+	transition: opacity 0.5s, visibility 0s 0.5s;
+  z-index: 99;
+}
+
+.overlay-content.open {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+}

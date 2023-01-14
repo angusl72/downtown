@@ -39,6 +39,7 @@ puts "Test User Created"
     puts "Img Adddress: #{image.address}"
 
     # Before photo
+<<<<<<< HEAD
     image.before_photo_base_url = [
       "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=161%20Richardson%20St&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
       "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=13%20rickard%20ave&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
@@ -46,6 +47,10 @@ puts "Test User Created"
       "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=1&location=103%20canning%20st&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
       "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=90&location=161%20collins%20st%20melbourne&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}"
     ].sample
+=======
+    # image.before_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{image_no}.jpg")), filename: "#{image.id}-before.jpg")
+    image.before_photo = ["https://maps.googleapis.com/maps/api/streetview?size=640x400&location=161%20Richardson%20St&key=#{ENV.fetch("STREET_VIEW_API")}", "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=13%20rickard%20ave&key=#{ENV.fetch("STREET_VIEW_API")}", "https://maps.googleapis.com/maps/api/streetview?size=640x400&location=103%20canning%20st&key=#{ENV.fetch("STREET_VIEW_API")}", "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=1&location=103%20canning%20st&key=#{ENV.fetch("STREET_VIEW_API")}", "https://maps.googleapis.com/maps/api/streetview?size=640x400&heading=90&location=161%20collins%20st%20melbourne&key=#{ENV.fetch("STREET_VIEW_API")}"].sample
+>>>>>>> master
     image.save!
     puts "Before photo attached:  #{image.before_photo.attached?}"
 
