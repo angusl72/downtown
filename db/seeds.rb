@@ -31,9 +31,9 @@ puts "Test User Created"
 
   # Creating 2 images per user
   2.times do
-    image = Image.create!(
+    image = Image.new(
       user_id: user.id,
-      address: Faker::Address.full_address,
+      address: ["161 Richardson St", "13 rickard ave", "103 canning st", "20 canning st", "161 collins st"].sample,
       options: Array.new([%w[trees bicycle cafe green mural].sample])
     )
     puts "Img Adddress: #{image.address}"

@@ -11,6 +11,7 @@ class ImagesController < ApplicationController
 
   def show
     authorize @image
+    @comment = Comment.new # We need it as the form to add a comment will be embeded in the show page
     # @markers = @image.geocoded.map do |image|
     #   {
     #     lat: image.latitude,
@@ -28,6 +29,11 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     @image.user = current_user
 
+    # Saving Address to image May need to do a better way??
+    a = @image.before_photo_base_url.split("location=")
+    b = a[1].split("&key")
+    @image.address = b[0]
+
     # save the image so that the before_photo is attached, otherwise it cannot be accessed.
     @image.save!
 
@@ -36,10 +42,8 @@ class ImagesController < ApplicationController
     blob = Base64.decode64(gen_image)
     image = MiniMagick::Image.read(blob)
     image.write("image.jpg")
-    # @image.after_photo.attach()
     @image.after_photo.attach(io: File.open("image.jpg"), filename: "after_photo_#{@image_id}.jpg", content_type: "image/jpeg")
-    # raise
-    # @image.after_photo.attach(data: "data:image/png;base64,#{[base64]}", filename: "after.jpg") # https://github.com/rootstrap/active-storage-base64
+    # @image.after_photo.attach(data: "data:image/png;base64,#{[base64]}", filename: "after.jpg") # This is for text to image functionality not currently in use # https://github.com/rootstrap/active-storage-base64
     authorize @image
     if @image.save
       redirect_to @image, status: :see_other
