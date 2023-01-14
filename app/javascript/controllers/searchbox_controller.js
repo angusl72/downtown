@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer']
+  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer']
 
   connect() {
     console.log("searchbox stimulus controller connected")
@@ -12,7 +12,7 @@ export default class extends Controller {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
 
-    const apiKey = 'AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8';
+    const apiKey = 'AIzaSyBrWAGNyemSagiAaW_pY4yj_wRyqZoBcKs';
 
     const startingHeading = Math.floor(Math.random() * 91)
 
@@ -70,6 +70,8 @@ export default class extends Controller {
 
     //append street images to our container
     imagesContainer.appendChild(imagesSubContainer)
+
+    this.searchOverlayContainerTarget.classList.remove('hidden')
 
     //display the hidden options
     const optionsContainer = this.optionsContainerTarget

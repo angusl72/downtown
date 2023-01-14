@@ -9,10 +9,6 @@ class Image < ApplicationRecord
   OPTIONS = ["Trees", "Bicycles", "Cafe", "Greenery", "Mural", "Colour", "Flowers", "Colourful Lights", "Snow"]
 
   def generate_image_variations
-    # use before_photo to generate variations using api
-    # Api returns json with image information (save this image to after_photo)
-    # debugger
-
     image = MiniMagick::Image.open(self.before_photo)
     image.format "PNG"
     image.resize('512x512')
@@ -21,7 +17,7 @@ class Image < ApplicationRecord
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     request = Net::HTTP::Post.new(url)
-    request["Authorization"] = ENV["STABILITY_AI_KEY"]
+    request["Authorization"] = ENV.fetch("STABILITY_AI_KEY")
     request["Accept"] = "application/json"
 
     options = {
@@ -47,11 +43,11 @@ class Image < ApplicationRecord
     request.set_form form_data, 'multipart/form-data'
     response = https.request(request)
     response.read_body
-    a = JSON.parse(response.read_body)
-    a["artifacts"][0]["base64"]
-
+    parsed_response = JSON.parse(response.read_body)
+    parsed_response["artifacts"][0]["base64"]
   end
 
+  # Text generation method not currently in use
   # def generate_text_variations
   #   # use before_photo to generate variations using api
   #   # Api returns json with image information (save this image to after_photo)
