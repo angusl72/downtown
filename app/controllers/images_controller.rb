@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_image, only: %i[show edit update destroy]
+  before_action :set_image, only: %i[show edit update destroy generated]
 
   def index
     # Added .order here to show the newest ones first
@@ -36,7 +36,8 @@ class ImagesController < ApplicationController
     # @image.after_photo.attach(data: "data:image/png;base64,#{[base64]}", filename: "after.jpg") # This is for text to image functionality not currently in use # https://github.com/rootstrap/active-storage-base64
     authorize @image
     if @image.save
-      redirect_to image_path('/images/new'), status: :see_other
+      # redirect_to new_image_path, status: :see_other
+      redirect_to image_generated_path(@image), status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
@@ -49,6 +50,10 @@ class ImagesController < ApplicationController
   end
 
   def update
+  end
+
+  def generated
+    authorize @image
   end
 
   private

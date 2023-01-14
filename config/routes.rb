@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "images#index"
   resources :images, except: %i[edit] do
     resources :comments, only: %i[new create]
+    get :generated
   end
   resources :comments, only: :destroy
   resources :users, only: :show
