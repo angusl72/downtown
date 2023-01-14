@@ -26,7 +26,7 @@ class ImagesController < ApplicationController
     # save our before photo
     before_photo_data = URI.parse(@image.before_photo_base_url).open
     @image.before_photo.attach(io: before_photo_data, filename: "before_photo_#{@image_id}.jpg")
-
+    puts @image.before_photo.attached?
     gen_image = @image.generate_image_variations
     # base64 = Base64.encode64(gen_image).split("\n").join
     blob = Base64.decode64(gen_image)
