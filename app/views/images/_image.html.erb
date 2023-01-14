@@ -11,7 +11,7 @@
             <% unless image.before_photo == nil %>
               <%= link_to (cl_image_tag image.before_photo.key, height: 400, width: 640, crop: :fill, :alt=>"Street View Image for #{image.address}"), image_path(image) %>
             <% else %>
-              <%= link_to (cl_image_tag ("prvluvb2arm6lhic2on9"), width: 400, height: 640, crop: :fill, gravity: "auto", class: "card-img-top"), image_path(image) %>
+              <%= link_to (cl_image_tag ("prvluvb2arm6lhic2on9"), width: 640, height: 400, crop: :fill, gravity: "auto", class: "card-img-top"), image_path(image) %>
             <% end %>
           </div>
           <div class="carousel-item">
