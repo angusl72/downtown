@@ -9,8 +9,6 @@ class Image < ApplicationRecord
 
   OPTIONS = ["Trees", "Bicycles", "Cafe", "Greenery", "Mural", "Colour", "Flowers", "Colourful Lights", "Snow"]
 
-  private
-
   def attach_before_photo
     before_photo_data = URI.parse(before_photo_base_url).open
     before_photo.attach(io: before_photo_data, filename: "before_photo_#{id}.jpg")
