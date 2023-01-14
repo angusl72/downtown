@@ -1,19 +1,25 @@
 class Image < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
-  # has_one_attached :before_photo
+  # Do we need has_one_base 64 attached?? or just one attached
+  has_one_attached :before_photo
   has_one_base64_attached :after_photo
   # data validations - TO DO
-  # after_create :generate_image_variations
+  after_create :attach_before_photo
 
   OPTIONS = ["Trees", "Bicycles", "Cafe", "Greenery", "Mural", "Colour", "Flowers", "Colourful Lights", "Snow"]
 
+  def attach_before_photo
+    before_photo_data = URI.parse(before_photo_base_url).open
+    before_photo.attach(io: before_photo_data, filename: "before_photo_#{id}.jpg")
+  end
+
   def generate_image_variations
-    # use before_photo to generate variations using api
+    # use before_photo_base_url to generate variations using api
     # Api returns json with image information (save this image to after_photo)
     # debugger
 
-    image = MiniMagick::Image.open(self.before_photo)
+    image = MiniMagick::Image.open(before_photo_base_url)
     image.format "PNG"
     image.resize('512x512')
 
@@ -21,7 +27,7 @@ class Image < ApplicationRecord
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     request = Net::HTTP::Post.new(url)
-    request["Authorization"] = ENV["STABILITY_AI_KEY"]
+    request["Authorization"] = ENV.fetch("STABILITY_AI_KEY")
     request["Accept"] = "application/json"
 
     options = {
@@ -47,11 +53,11 @@ class Image < ApplicationRecord
     request.set_form form_data, 'multipart/form-data'
     response = https.request(request)
     response.read_body
-    a = JSON.parse(response.read_body)
-    a["artifacts"][0]["base64"]
-
+    parsed_response = JSON.parse(response.read_body)
+    parsed_response["artifacts"][0]["base64"]
   end
 
+  # Text generation method not currently in use
   # def generate_text_variations
   #   # use before_photo to generate variations using api
   #   # Api returns json with image information (save this image to after_photo)
