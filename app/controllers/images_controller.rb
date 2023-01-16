@@ -37,7 +37,7 @@ class ImagesController < ApplicationController
     authorize @image
     if @image.save
       # redirect_to new_image_path, status: :see_other
-      redirect_to image_generated_path(@image), status: :see_other
+      redirect_to generated_image_path(@image), status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
