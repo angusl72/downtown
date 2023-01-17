@@ -1,7 +1,7 @@
 <div class="container mb-5">
   <div class="card mt-3">
     <div class="col-md-6 image w-50 m-3 rounded">
-      <div class="img-card">
+      <div class="card">
         <% unless @image.after_photo.key == nil %>
           <%= cl_image_tag @image.after_photo.key,width: 400, height: 650, crop: :fill, gravity: "auto", class: "card-img rounded" %>
         <% else %>
