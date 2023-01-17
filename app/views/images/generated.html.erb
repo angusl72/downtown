@@ -1,0 +1,123 @@
+<div class="container mb-5">
+  <div class="card mt-3">
+    <div class="col-md-6 image w-50 m-3 rounded">
+      <div class="card">
+        <% unless @image.after_photo.key == nil %>
+          <%= cl_image_tag @image.after_photo.key,width: 400, height: 650, crop: :fill, gravity: "auto", class: "card-img rounded" %>
+        <% else %>
+          <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 400, height: 650, crop: :fill, gravity: "auto", class: "card-img rounded" %>
+        <% end %>
+      </div>
+    </div>
+  <div class="card-product">
+      <div class="col-md-12">
+        <div class="card-body">
+          <h4 class="card-title fw-semibold pb-2">Options</h4>
+          <p class="card-text">Should we add a breif description info here so it doesnt look as bare of what this is and to save or regenerate?</p>
+          <p class="card-text"><small class="text-muted">Image address to go here?</small></p>
+          <% @image.options.each do |option| %>
+            <p class="img-tag-options"><%= option.capitalize %></p>
+          <% end %>
+        </div>
+        <div class="card-body d-flex justify-content-start">
+          <button type="button" class="btn btn-success me-4">Regenerate</button>
+          <button type="button" class="btn btn-primary me-4">Save</button>
+          <button type="button" class="btn btn-warning">Discard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<main>
+      <div class="container">
+        <div class="image-container">
+          <img
+            class="image-before slider-image"
+           src="https://i.picsum.photos/id/1015/6000/4000.jpg?hmac=aHjb0fRa1t14DTIEBcoC12c5rAXOSwnVlaA5ujxPQ0I"
+            alt="color photo"
+          />
+          <img
+            class="image-after slider-image"
+            src="https://i.picsum.photos/id/1015/6000/4000.jpg?hmac=aHjb0fRa1t14DTIEBcoC12c5rAXOSwnVlaA5ujxPQ0I"
+            alt="black and white"
+          />
+        </div>
+        <!-- step="10" -->
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          aria-label="Percentage of before photo shown"
+          class="slider"
+        />
+        <div class="slider-line" aria-hidden="true"></div>
+        <div class="slider-button" aria-hidden="true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            fill="currentColor"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none"></rect>
+            <line
+              x1="128"
+              y1="40"
+              x2="128"
+              y2="216"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            ></line>
+            <line
+              x1="96"
+              y1="128"
+              x2="16"
+              y2="128"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            ></line>
+            <polyline
+              points="48 160 16 128 48 96"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            ></polyline>
+            <line
+              x1="160"
+              y1="128"
+              x2="240"
+              y2="128"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            ></line>
+            <polyline
+              points="208 96 240 128 208 160"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            ></polyline>
+          </svg>
+        </div>
+      </div>
+    <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/dzqDU9efnnk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+    </main>
