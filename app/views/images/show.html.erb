@@ -51,6 +51,9 @@
       <div class="user-details mt-3 mx-3">
       <p> <strong><%= link_to @image.user.username.capitalize, user_path(@image.user.id) %></strong> </p>
       <p>📍 <%= @image.user.city %></p>
+        <% if policy(@image).destroy? %>
+          <%= button_to "Delete", @image,method: :delete, class: "btn btn-flat" %>
+        <% end %>
       </div>
       <div class="container-fluid py-2">
           <% if @image.comments.blank? %>

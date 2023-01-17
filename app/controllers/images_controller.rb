@@ -10,6 +10,7 @@ class ImagesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     authorize @image
     # @markers = @image.geocoded.map do |image|
     #   {
@@ -49,6 +50,10 @@ class ImagesController < ApplicationController
   end
 
   def destroy
+    authorize @image
+    @image = Image.find(params[:id])
+    @image.destroy
+    redirect_to action: :index, status: :see_other
   end
 
   def edit
