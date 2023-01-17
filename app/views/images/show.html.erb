@@ -24,6 +24,12 @@
             <div class="carousel-caption d-none d-md-block">
               <h5>After</h5>
             </div>
+            <div class=card-options>
+              <% @image.options.sample(2).each do |option| %>
+                <p class="img-tag-options"><%= option.capitalize %></p>
+              <% end %>
+            </div>
+
           </div>
           <div class="carousel-item">
             <% unless @image.before_photo.key == nil %>
