@@ -42,7 +42,7 @@ class Image < ApplicationRecord
       seed: 0,
       step_schedule_end: 0.01,
       step_schedule_start: 0.4,
-      steps: 50,
+      steps: 25,
       text_prompts: [
         {
           text: self.options.join(" "),

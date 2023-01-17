@@ -29,4 +29,8 @@ class ImagePolicy < ApplicationPolicy
     def update?
       edit?
     end
+
+    def generated?
+      true
+    end
 end
