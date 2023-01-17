@@ -49,7 +49,7 @@ export default class extends Controller {
       console.log(heading)
 
       //define the URL for each query
-      return `https://maps.googleapis.com/maps/api/streetview?size=640x400${heading}&location=${address}&key=${apiKey}`
+      return `https://maps.googleapis.com/maps/api/streetview?size=640x512${heading}&location=${address}&key=${apiKey}`
     }
 
     //Create 5 different street images
