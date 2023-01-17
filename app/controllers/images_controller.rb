@@ -11,7 +11,12 @@ class ImagesController < ApplicationController
 
   def show
     authorize @image
-    @comment = Comment.new # We need it as the form to add a comment will be embeded in the show page
+    # @markers = @image.geocoded.map do |image|
+    #   {
+    #     lat: image.latitude,
+    #     lng: image.longitude
+    #   }
+    # end
   end
 
   def new
@@ -23,9 +28,8 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     @image.user = current_user
 
-    # save our before photo
-    before_photo_data = URI.parse(@image.before_photo_base_url).open
-    @image.before_photo.attach(io: before_photo_data, filename: "before_photo_#{@image_id}.jpg")
+    # save the image so that the before_photo is attached, otherwise it cannot be accessed.
+    @image.save!
 
     gen_image = @image.generate_image_variations
     # base64 = Base64.encode64(gen_image).split("\n").join # This is for text to image functionality not currently in use
@@ -41,6 +45,7 @@ class ImagesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+    puts "----- BEFORE PHOTO ATTACHED: #{@image.before_photo.attached?} ----"
   end
 
   def destroy

@@ -9,10 +9,17 @@
       <div class="card">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <% unless @image.after_photo.key == nil %>
-            <%= cl_image_tag @image.after_photo.key,width: 400, height: 650, crop: :fill, gravity: "auto", class: "card-img-top" %>
+            <% unless @image.before_photo == nil %>
+            <%= cl_image_tag @image.before_photo.key, width: 640, height: 400, crop: :fill, class: "card-img-top" %>
             <% else %>
-            <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 400, height: 650, crop: :fill, gravity: "auto", class: "card-img-top" %>
+            <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 400, crop: :fill, class: "card-img-top" %>
+            <% end %>
+          </div>
+          <div class="carousel-item">
+            <% unless @image.after_photo.key == nil %>
+            <%= cl_image_tag @image.after_photo.key,width: 640, height: 400, crop: :fill, gravity: "auto", class: "card-img-top" %>
+            <% else %>
+            <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 400, crop: :fill, gravity: "auto", class: "card-img-top" %>
             <% end %>
             <div class="carousel-caption d-none d-md-block">
               <h5>After</h5>
@@ -41,31 +48,29 @@
     </div>
     </div>
     <div class="card-product">
-      <div class="user-details m-3 rounded">
+      <div class="user-details mt-3 mx-3">
       <p> <strong><%= link_to @image.user.username.capitalize, user_path(@image.user.id) %></strong> </p>
       <p>📍 <%= @image.user.city %></p>
       </div>
-      <div class=" container-fluid py-2">
-        <div class="d-flex flex-column flex-nowrap overflow-auto comments-container">
-          <% @image.comments.each do |comment| %>
-            <div class="card card-block mx-2" style="overflow-y: auto;
-              min-height: 150px;
-              min-width: 620px;
-              max-width: 620px;
-              margin: 10px">
-              <div class="card-body">
-                <h5 class="card-title"><%= comment.user.username.capitalize %></h5>
-                <p class="card-text"><%= comment.text %></p>
-              </div>
-            </div>
+      <div class="container-fluid py-2">
+          <% if @image.comments.blank? %>
+            <p>Be the first to leave a review!</p>
+          <% else %>
+          <h2 class="text-center"> <%= "Comment".pluralize(@image.comments.count) %></h3>
+            <%= render partial: "comment", locals: { comment: @image.comments } %>
           <% end %>
-        </div>
-          <%= render partial: 'comments/form' %>
+          <div class="container-fluid pb-2">
+            <%= render partial: 'comments/form' %>
+          </div>
       </div>
       <div class="map m-3 rounded">
-      <h2></h2>
-      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@image.address}&size=1000x800&zoom=15&key=AIzaSyCdet6rFgMZjhIfy8IpdroRV5vKUOE94D8&markers=size:small%7Ccolor:red%7Clabel:C%7C", width: 700, height: 250 %>
-      </div>
+        <h2></h2>
+        <div data-controller="map"
+          id='map'
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+          style='width: 700px; height: 250px;'></div>
+        </div>
     </div>
   </div>
 </div>
