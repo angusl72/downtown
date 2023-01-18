@@ -9,11 +9,8 @@ export default class extends Controller {
   }
 
   beforeAfter(event) {
-    // this.imageOuterContainerTarget.style.setProperty('--position', event.currentTarget.value)
-    // this.imageOuterContainerTarget.backgroundColor = "blue";
     const a = this.imageOuterContainerTarget
-    // this.imageOuterContainerTarget.setAttribute('--position', event.currentTarget.value)
-    a.setAttribute('--position', event.currentTarget.value)
+    a.style.setProperty("--position", `${event.currentTarget.value}%`);
     console.log(event.currentTarget.value)
   }
 }
