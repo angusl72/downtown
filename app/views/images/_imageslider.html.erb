@@ -1,17 +1,7 @@
 <div class="image-slider-outer-container" data-controller="image-slider" data-image-slider-target="imageOuterContainer">
   <div class="image-container">
-    <%= cl_image_tag @image.before_photo.key,width: 640, height: 400, crop: :fill, gravity: "auto", class: "image-before slider-image" %>
-    <%# <img
-      class="image-before slider-image"
-      src="https://i.picsum.photos/id/1015/6000/4000.jpg?hmac=aHjb0fRa1t14DTIEBcoC12c5rAXOSwnVlaA5ujxPQ0I"
-      alt="color photo"
-    /> %>
-    <%= cl_image_tag @image.after_photo.key,width: 640, height: 400, crop: :fill, gravity: "auto", class: "image-after slider-image" %>
-    <%# <img
-      class="image-after slider-image"
-      src="https://i.picsum.photos/id/1015/6000/4000.jpg?hmac=aHjb0fRa1t14DTIEBcoC12c5rAXOSwnVlaA5ujxPQ0I"
-      alt="black and white"
-    /> %>
+    <%= cl_image_tag @image.before_photo.key,width: 900, height: 720, crop: :fill, gravity: "auto", class: "image-before slider-image" %>
+    <%= cl_image_tag @image.after_photo.key,width: 900, height: 720, crop: :fill, gravity: "auto", class: "image-after slider-image" %>
   </div>
   <!-- step="10" -->
   <input

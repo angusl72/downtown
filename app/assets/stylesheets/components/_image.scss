@@ -85,7 +85,6 @@ main {
 }
 
 .image-slider-outer-container {
-  // width: 800px;
   display: grid;
   place-content: center;
   position: relative;
@@ -95,9 +94,9 @@ main {
 }
 
 .image-container {
-  max-width: 800px;
+  max-width: 900px;
   max-height: 90vh;
-  aspect-ratio: 5/4;
+  aspect-ratio: 1.25/1;
 }
 
 .slider-image {
@@ -111,7 +110,6 @@ main {
   position: absolute;
   inset: 0;
   width: var(--position);
-  filter: grayscale(100%)
 }
 
 .slider {
@@ -158,7 +156,3 @@ main {
 }
 
 // image slider end
-
-.aba {
-  width: 1080px;
-}
