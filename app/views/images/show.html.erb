@@ -1,69 +1,74 @@
 <div class="container mb-5">
   <div class="card mt-3">
     <div class="image w-50 m-3 rounded">
-     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      </div>
-      <div class="card">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <% unless @image.before_photo == nil %>
-            <%= cl_image_tag @image.before_photo.key, width: 640, height: 400, crop: :fill, class: "card-img-top" %>
-            <% else %>
-            <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 400, crop: :fill, class: "card-img-top" %>
-            <% end %>
-          </div>
-          <div class="carousel-item">
-            <% unless @image.after_photo.key == nil %>
-            <%= cl_image_tag @image.after_photo.key,width: 640, height: 400, crop: :fill, gravity: "auto", class: "card-img-top" %>
-            <% else %>
-            <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 400, crop: :fill, gravity: "auto", class: "card-img-top" %>
-            <% end %>
-            <div class="carousel-caption d-none d-md-block">
-              <h5>After</h5>
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="card">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <% unless @image.before_photo == nil %>
+              <%= cl_image_tag @image.before_photo.key, width: 640, height: 620, crop: :fill, class: "card-img-top" %>
+              <% else %>
+              <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 620, crop: :fill, class: "card-img-top" %>
+              <% end %>
             </div>
+            <div class="carousel-item">
+              <% unless @image.after_photo.key == nil %>
+              <%= cl_image_tag @image.after_photo.key,width: 640, height: 620, crop: :fill, gravity: "auto", class: "card-img-top" %>
+              <% else %>
+              <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 620, crop: :fill, gravity: "auto", class: "card-img-top" %>
+              <% end %>
+              <div class="carousel-caption d-none d-md-block">
+                <h5>After</h5>
+              </div>
               <div class=card-options>
                 <% @image.options.sample(2).each do |option| %>
                   <p class="img-tag-options"><%= option.capitalize %></p>
                 <% end %>
               </div>
-
-          </div>
-          <div class="carousel-item">
-            <% unless @image.before_photo.key == nil %>
-            <%= cl_image_tag @image.before_photo.key,width: 640, height: 400, crop: :fill, gravity: "auto", class: "card-img-top" %>
-            <% else %>
-            <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 400, crop: :fill, gravity: "auto", class: "card-img-top" %>
-            <% end %>
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Before</h5>
+            </div>
+            <div class="carousel-item">
+              <% unless @image.before_photo.key == nil %>
+              <%= cl_image_tag @image.before_photo.key,width: 640, height: 620, crop: :fill, gravity: "auto", class: "card-img-top" %>
+              <% else %>
+              <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 620, crop: :fill, gravity: "auto", class: "card-img-top" %>
+              <% end %>
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Before</h5>
+              </div>
             </div>
           </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
-    </div>
     </div>
     <div class="card-product">
       <div class="user-details mt-3 mx-3">
-      <p> <strong><%= link_to @image.user.username.capitalize, user_path(@image.user.id) %></strong> </p>
-      <p>📍 <%= @image.user.city %></p>
-        <% if policy(@image).destroy? %>
-          <%= button_to "Delete", @image,method: :delete, class: "btn btn-flat" %>
-        <% end %>
+        <p> <strong><%= link_to @image.user.username.capitalize, user_path(@image.user.id) %></strong> </p>
+        <p>📍 <%= @image.user.city %></p>
       </div>
+
+        <div class="delete-button">
+          <% if policy(@image).destroy? %>
+            <%= button_to "Delete", @image,
+            method: :delete, class: "btn btn-outline-danger rounded",
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          <% end %>
+        </div>
+
       <div class="container-fluid py-2">
           <% if @image.comments.blank? %>
-            <p>Be the first to leave a review!</p>
+            <p class="text-center">Be the first to leave a review!</p>
           <% else %>
           <h2 class="text-center"> <%= "Comment".pluralize(@image.comments.count) %></h3>
             <%= render partial: "comment", locals: { comment: @image.comments } %>
@@ -72,14 +77,16 @@
             <%= render partial: 'comments/form' %>
           </div>
       </div>
+
       <div class="map m-3 rounded">
         <h2></h2>
         <div data-controller="map"
           id='map'
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-          style='width: 700px; height: 250px;'></div>
+          style='width: 700px; height: 200px;'></div>
         </div>
+      </div>
     </div>
   </div>
 </div>

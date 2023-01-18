@@ -35,19 +35,18 @@
     }
 }
 
-
+.delete-button {
+  display: inline-block;
+  position: absolute;
+  right: 25px;
+  bottom: 12px;
+}
 
 .comments-container {
   height: 200px
 }
 
-.map {
-  height: 250px;
-  width: 650px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .img-tag-options {
   display: inline-block;
