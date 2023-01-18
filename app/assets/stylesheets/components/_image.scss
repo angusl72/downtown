@@ -68,23 +68,13 @@ iframe {
   aspect-ratio: 16/9;
 }
 
-.video-container {
-  margin: 2rem;
-  max-height: 300px;
-}
-
 img.slider-image {
   display: block;
   max-width: 100%;
 }
 
-main {
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
-}
-
 .image-slider-outer-container {
+  max-width: 850px;
   display: grid;
   place-content: center;
   position: relative;
@@ -94,7 +84,7 @@ main {
 }
 
 .image-container {
-  max-width: 900px;
+  max-width: 850px;
   max-height: 90vh;
   aspect-ratio: 1.25/1;
 }
@@ -156,3 +146,7 @@ main {
 }
 
 // image slider end
+
+.image-fluid-container {
+  max-width: 1500px;
+}
