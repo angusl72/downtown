@@ -1,5 +1,5 @@
-<%= simple_form_for image do |f| %>
-  <%= f.input :private, :label => "Make this Private?", as: :boolean %>
+<%= simple_form_for image, url: generated_image_path, method: :patch do |f| %>
+  <%= f.input :image_private, :label => "Would you like to make this Private?", as: :boolean %>
+  <%= link_to "Cancel", :back, class: "btn btn-warning me-3" %>
   <%= f.button :submit, 'Save', class: "btn-primary" %>
-  <%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
 <% end %>
