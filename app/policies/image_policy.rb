@@ -31,6 +31,6 @@ class ImagePolicy < ApplicationPolicy
     end
 
     def generated?
-      true
+      record.user == user
     end
 end
