@@ -24,7 +24,7 @@ class Image < ApplicationRecord
 
     image = MiniMagick::Image.open(before_photo_base_url)
     image.format "PNG"
-    image.resize('512x512')
+    # image.resize('640x512') # only needed if other size is returned
 
     url = URI("https://api.stability.ai/v1alpha/generation/stable-diffusion-512-v2-1/image-to-image")
     https = Net::HTTP.new(url.host, url.port)
