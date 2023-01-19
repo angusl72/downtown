@@ -7,6 +7,9 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import ImageSliderController from "./image_slider_controller"
+application.register("image-slider", ImageSliderController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)
 
