@@ -12,6 +12,9 @@
           <% @image.options.each do |option| %>
             <p class="img-tag-options mt-2"><%= option.capitalize %></p>
           <% end %>
+          <% if !@image.custom_option.blank? %>
+            <p class="img-tag-options mt-2"><%= @image.custom_option %></p>
+          <% end %>
           <div class="mt-2">
             <%= render "save_private_form", image: @image %>
           </div>

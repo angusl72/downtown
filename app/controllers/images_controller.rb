@@ -82,7 +82,7 @@ class ImagesController < ApplicationController
   end
 
   def image_params
-    params.require(:image).permit(:before_photo_base_url, :address, :image_saved, :image_private, options: [])
+    params.require(:image).permit(:before_photo_base_url, :address, :image_saved, :image_private, :custom_option, options: [])
   end
 
 end
