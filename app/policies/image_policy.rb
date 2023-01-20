@@ -31,6 +31,10 @@ class ImagePolicy < ApplicationPolicy
     end
 
     def generated?
-      true
+      record.user == user
+    end
+
+    def save_image?
+      record.user == user
     end
 end

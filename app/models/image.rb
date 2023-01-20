@@ -47,6 +47,10 @@ class Image < ApplicationRecord
         {
           text: self.options.join(" "),
           weight: 1
+        },
+        {
+          text: self.custom_option,
+          weight: 1
         }
       ],
       width: 512

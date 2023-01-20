@@ -4,7 +4,7 @@
       <%= render "imageslider" %>
     </div>
     <div class="col-12 col-md-4 mt-3">
-      <div class="card">
+      <div class="card side-card-color">
         <div class="card-body">
           <h5 class="card-title">Options</h5>
           <p class="card-text">Should we add a breif description info here so it doesnt look as bare of what this is and to save or regenerate?</p>
@@ -12,10 +12,11 @@
           <% @image.options.each do |option| %>
             <p class="img-tag-options mt-2"><%= option.capitalize %></p>
           <% end %>
-          <div>
-            <button type="button" class="btn btn-warning me-4 mt-4">Discard</button>
-            <button type="button" class="btn btn-success me-4 mt-4">Regenerate</button>
-            <button type="button" class="btn btn-primary mt-4">Save</button>
+          <% if !@image.custom_option.blank? %>
+            <p class="img-tag-options mt-2"><%= @image.custom_option %></p>
+          <% end %>
+          <div class="mt-2">
+            <%= render "save_private_form", image: @image %>
           </div>
         </div>
       </div>

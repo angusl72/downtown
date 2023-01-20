@@ -1,12 +1,13 @@
-<div class="d-flex flex-column flex-nowrap overflow-auto comments-container mb-3">
+<div class="overflow-auto comments-container">
   <% @image.comments.each do |comment| %>
-    <div class="card card-block mx-2" style="
-      height: auto;
-      width: 620px;
-      margin: 5px">
+    <div class="card mb-4">
       <div class="card-body">
-        <h5 class="card-title"><%= comment.user.username.capitalize %></h5>
-        <p class="card-text"><%= comment.text %></p>
+        <p><%= comment.text %></p>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-row align-items-center">
+            <p class="small mb-0"><%= comment.user.username.capitalize %></p>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>

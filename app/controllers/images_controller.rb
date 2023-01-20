@@ -1,12 +1,12 @@
 class ImagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_image, only: %i[show edit update destroy generated]
+  before_action :set_image, only: %i[show edit update destroy generated save_image]
 
   def index
     # Added .order here to show the newest ones first
     # also added a .limit, so we're not rendering too many images at once
     # TODO: also need to add some logic here that only shows SAVED photos from user
-    @images = policy_scope(Image).order(created_at: :desc).limit(40)
+    @images = policy_scope(Image).order(created_at: :desc).limit(40).where(image_saved: true, image_private: false)
   end
 
   def show
@@ -66,6 +66,14 @@ class ImagesController < ApplicationController
     authorize @image
   end
 
+  def save_image
+    authorize @image
+    @image.image_private = image_params[:image_private]
+    @image.image_saved = true
+    @image.save
+    redirect_to action: :index, status: :see_other
+  end
+
   private
 
   def set_image
@@ -74,7 +82,7 @@ class ImagesController < ApplicationController
   end
 
   def image_params
-    params.require(:image).permit(:before_photo_base_url, :address, options: [])
+    params.require(:image).permit(:before_photo_base_url, :address, :image_saved, :image_private, :custom_option, options: [])
   end
 
 end
