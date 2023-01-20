@@ -1,76 +1,60 @@
-<div class="container mb-5">
-  <div class="card mt-3">
-    <div class="image w-50 m-3 rounded">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-        <div class="card">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <% unless @image.after_photo.key == nil %>
-              <%= cl_image_tag @image.after_photo.key,width: 640, height: 620, crop: :fill, gravity: "auto", class: "card-img-top" %>
-              <% else %>
-              <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 620, crop: :fill, gravity: "auto", class: "card-img-top" %>
-              <% end %>
-              <div class="carousel-caption d-none d-md-block">
-                <h5>After</h5>
-              </div>
-            </div>
-              <div class=card-options>
-                <% @image.options.sample(2).each do |option| %>
-                  <p class="img-tag-options"><%= option.capitalize %></p>
-                <% end %>
-              </div>
-            <div class="carousel-item">
-              <% unless @image.before_photo == nil %>
-              <%= cl_image_tag @image.before_photo.key, width: 640, height: 620, crop: :fill, class: "card-img-top" %>
-              <% else %>
-              <%= cl_image_tag "prvluvb2arm6lhic2on9",width: 640, height: 620, crop: :fill, class: "card-img-top" %>
-              <% end %>
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Before</h5>
-              </div>
-            </div>
-
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
+<div class="container-fluid image-fluid-container px-5">
+  <div class="row m-2">
+    <div class="col-12 col-md-8 mt-3">
+      <%= render "imageslider" %>
     </div>
-    <div class="card-product">
-      <div class="user-details mt-3 mx-3">
-        <p> <strong><%= link_to @image.user.username.capitalize, user_path(@image.user.id) %></strong> </p>
-        <p>📍 <%= @image.user.city %></p>
-      </div>
+    <div class="col-12 col-md-4 mt-3">
 
-        <div class="delete-button">
-          <% if policy(@image).destroy? %>
-            <%= button_to "", @image,
-            method: :delete, class: "btn btn-outline-danger fa-solid fa-trash ",
-            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-          <% end %>
-        </div>
-
-      <div class="container-fluid py-2">
-          <% if @image.comments.blank? %>
-            <p class="text-center">Be the first to leave a review!</p>
-          <% else %>
-          <h2 class="text-center"> <%= "Comment".pluralize(@image.comments.count) %></h3>
-            <%= render partial: "comment", locals: { comment: @image.comments } %>
-          <% end %>
-          <div class="container-fluid pb-2">
-            <%= render partial: 'comments/form' %>
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title user-details"><strong><%= link_to @image.user.username.capitalize, user_path(@image.user.id) %></strong></h5>
+            <div class="delete-button">
+              <% if policy(@image).destroy? %>
+                <%= button_to "", @image,
+                method: :delete, class: "btn btn-outline-danger fa-solid fa-trash ",
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              <% end %>
+            </div>
+            <p class="card-text">📍 <%= @image.user.city %></p>
+            <h5 class="card-title"><strong>Options</strong></h5>
+            <% @image.options.each do |option| %>
+              <p class="img-tag-options mt-2"><%= option.capitalize %></p>
+            <% end %>
+            <% if !@image.custom_option.blank? %>
+              <p class="img-tag-options mt-2"><%= @image.custom_option %></p>
+            <% end %>
           </div>
+        </div>
       </div>
+
+      <div class="col-12 mt-3">
+        <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+          <div class="card-body p-4">
+            <h5 class="card-title"><strong>Comments</strong></h5>
+            <div class="form-outline mb-4">
+              <%= render partial: 'comments/form' %>
+            </div>
+            <% if @image.comments.blank? %>
+              <p class="text-center">Be the first to leave a comment!</p>
+            <% else %>
+              <%= render partial: "comment", locals: { comment: @image.comments } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
       <div class="map m-3 rounded">
         <h2></h2>
@@ -80,9 +64,3 @@
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
           style='width: 700px; height: 200px;'></div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<i class=""></i>
