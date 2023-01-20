@@ -1,9 +1,10 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton']
+  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body']
 
   connect() {
+    this.overlayTarget.hidden = true
     console.log("searchbox stimulus controller connected")
 
   }
@@ -81,10 +82,15 @@ export default class extends Controller {
 
     //display the hidden options
     const optionsContainer = this.optionsContainerTarget
+    this.overlayTarget.hidden = false;
     optionsContainer.classList.remove('hidden')
+
+    document.body.style.overflow = "hidden";
   }
 
   closeButton(event) {
+    document.body.style.overflow = "visible";
+    this.overlayTarget.hidden = true
     this.searchOverlayContainerTarget.classList.remove('open')
   }
 }
