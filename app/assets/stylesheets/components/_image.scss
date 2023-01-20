@@ -43,7 +43,7 @@
 }
 
 .comments-container {
-  height: 500px
+  max-height: 500px
 }
 
 
@@ -157,4 +157,8 @@ img.slider-image {
 
 .image-fluid-container {
   max-width: 1500px;
+}
+
+.side-card-color {
+  background-color: #f0f2f5;
 }
