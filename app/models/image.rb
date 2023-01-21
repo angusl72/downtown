@@ -7,8 +7,9 @@ class Image < ApplicationRecord
   # data validations - TO DO
   after_create :attach_before_photo
 
-  geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
+  # Geocoding
+  geocoded_by :address # tells geocoder gem which column to use
+  after_validation :geocode, if: :will_save_change_to_address? # runs geocode conversion if address saved.
 
   OPTIONS = ["Trees", "Bicycles", "Cafe", "Greenery", "Mural", "Colour", "Flowers", "Colourful Lights", "Snow"]
 
@@ -46,6 +47,10 @@ class Image < ApplicationRecord
       text_prompts: [
         {
           text: self.options.join(" "),
+          weight: 1
+        },
+        {
+          text: self.custom_option,
           weight: 1
         }
       ],

@@ -33,6 +33,7 @@ puts "Test User Created"
   2.times do
     image = Image.create!(
       user_id: user.id,
+      image_saved: true,
       address: Faker::Address.full_address,
       options: Array.new([%w[trees bicycle cafe green mural].sample]),
       before_photo_base_url: [
@@ -48,7 +49,7 @@ puts "Test User Created"
 
     puts "Before photo attached:  #{image.before_photo.attached?}"
 
-    # After photo
+    # After photo - note, we attach photos manually here so we don't have to call our stable diffusion API every time.
     image.after_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{rand(1..5)}-2.jpg")), filename: "#{image.id}-after.jpg")
     image.save!
     puts "After photo attached: #{image.after_photo.attached?}"

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[new create]
     member do
       get :generated
+      patch :generated, to: 'images#save_image'
     end
   end
     resources :comments, only: :destroy
