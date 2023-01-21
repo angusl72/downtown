@@ -12,3 +12,15 @@
   border-radius: 1rem;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
+
+.users-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  .card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+}
