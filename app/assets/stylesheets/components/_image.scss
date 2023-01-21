@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  background-image: cover;
+  min-width: 380px;
 }
 .card-options {
   display: inline-block;
@@ -11,6 +13,7 @@
   width: auto;
   padding: 5px;
   height: auto;
+  opacity: 0.7;
 }
 
 .card-product {
