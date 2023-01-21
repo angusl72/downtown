@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus'
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 export default class extends Controller {
   static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body']
@@ -6,12 +7,12 @@ export default class extends Controller {
   connect() {
     this.overlayTarget.hidden = true
     console.log("searchbox stimulus controller connected")
-
   }
 
   searchAddress(event) {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
+    // console.log(this.addressQueryTarget.value, "address is...")
 
     const apiKey = 'AIzaSyDb-GlGjN3ftlq0fqbuHmzjwgNdR0P3Wow';
 

@@ -1,14 +1,12 @@
-<div data-controller="searchbox">
+<div data-controller="searchbox" data-controller="address-autocomplete">
   <div id="overlay" class="z-2 position-absolute" data-searchbox-target="overlay"></div>
   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
     <div class="container-fluid">
       <%= link_to "Downtown.ai", root_path, class: "navbar-brand" %>
 
-      <form class="form-inline mb-2" data-action="submit->searchbox#searchAddress">
-        <input data-searchbox-target="addressQuery" class="form-control me-2 navbar-form" type="text" placeholder="Type an address..." aria-label="Search">
+      <form class="form-inline mt-3 col-4" data-action="submit->searchbox#searchAddress">
+        <%= render "shared/address_search", image: @navbar_image %>
       </form>
-
-      <%= render "shared/address_search", image: @navbar_image %>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

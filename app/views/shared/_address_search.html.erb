@@ -1,9 +1,7 @@
 <%= simple_form_for image do |f| %>
-  <div data-searchbox-target="imagesContainer"></div>
-  <%= f.input :address,
-    input_html: {data: {address_autocomplete_target: "address"}},
-    wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
-  %>
-
-  <%= f.button :submit, 'Submit', class: "btn-primary" %>
+    <%= f.input :address, label: false,
+      input_html: {data: {address_autocomplete_target: "address", searchbox_target: "addressQuery"}, class: "d-none"},
+      wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+    %>
+    <%= f.button :submit, 'Submit', class: "btn-primary" %>
 <% end %>
