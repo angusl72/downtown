@@ -33,8 +33,9 @@ puts "Test User Created"
   2.times do
     image = Image.create!(
       user_id: user.id,
-      address: Faker::Address.full_address,
+      address: ["161 Richardson St", "13 rickard ave", "20 canning st", "103 canning st", "20 collins st"].sample,
       options: Array.new([%w[trees bicycle cafe green mural].sample]),
+      image_saved: true,
       before_photo_base_url: [
         "https://maps.googleapis.com/maps/api/streetview?size=640x512&location=161%20Richardson%20St&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
         "https://maps.googleapis.com/maps/api/streetview?size=640x512&location=13%20rickard%20ave&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
