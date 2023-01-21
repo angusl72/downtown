@@ -33,6 +33,7 @@ puts "Test User Created"
   2.times do
     image = Image.create!(
       user_id: user.id,
+      image_saved: true,
       address: Faker::Address.full_address,
       options: Array.new([%w[trees bicycle cafe green mural].sample]),
       before_photo_base_url: [
