@@ -16,10 +16,15 @@ export default class extends Controller {
     this.geocoder.addTo(this.element)
     this.geocoder.on("result", event => this.#setInputValue(event))
     this.geocoder.on("clear", () => this.#clearInputValue())
+
   }
 
   #setInputValue(event) {
     this.addressTarget.value = event.result["place_name"]
+    console.log(event.result["place_name"])
+    let searchboxController = this.application.getControllerForElementAndIdentifier(this.#searchboxTarget, 'searchbox')
+    searchboxController.searchAddress(event)
+
   }
 
   #clearInputValue() {
