@@ -12,12 +12,19 @@ class ImagesController < ApplicationController
   def show
     @comment = Comment.new
     authorize @image
-    # @markers = @image.geocoded.map do |image|
-    #   {
-    #     lat: image.latitude,
-    #     lng: image.longitude
-    #   }
-    # end
+
+    # generate coordinates for our markers
+    @images = Image.all # TODO: adjust to return closes 10-20 (@image.nearbys(20))
+    @all_markers = @images.geocoded.map do |img|
+      {
+        lat: img.latitude,
+        lng: img.longitude
+      }
+    end
+    @image_marker = [{
+      lat: @image.latitude,
+      lng: @image.longitude
+    }]
   end
 
   def new
