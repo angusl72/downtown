@@ -18,7 +18,8 @@ class ImagesController < ApplicationController
     @all_markers = @images.geocoded.map do |img|
       {
         lat: img.latitude,
-        lng: img.longitude
+        lng: img.longitude,
+        info_window: "h1"
       }
     end
     @image_marker = [{
