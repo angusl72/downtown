@@ -12,6 +12,14 @@ class ImagesController < ApplicationController
   def show
     @comment = Comment.new
     authorize @image
+    # generate coordinates for our markers - note this is just ONE marker, not all of them...
+    @markers = [{
+      lat: @image.latitude,
+      lng: @image.longitude
+    }]
+    puts "------------------------------------"
+    puts @markers
+    # TODO: this approach should instead iterate through @images, which is iterable vs current @image
     # @markers = @image.geocoded.map do |image|
     #   {
     #     lat: image.latitude,

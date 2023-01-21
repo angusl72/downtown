@@ -1,9 +1,6 @@
-<div class="map m-3 rounded border">
-  <h2>Map</h2>
-  <div data-controller="map"
-    id='map'
-    data-map-markers-value="<%= @markers.to_json %>"
+  <div class="map rounded border" data-controller="map"
+    id="map"
+    data-map-markers-value="<%= markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-    style='width: 700px; height: 200px;'>
+    style='width: 100%; height: 400px;'>
   </div>
-</div>

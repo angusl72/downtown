@@ -7,11 +7,14 @@ export default class extends Controller {
     markers: Array
   }
   connect() {
+    console.log("connected to map controller")
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
-      container: 'this.element',
-      style: 'mapbox://styles/mapbox/streets-v10',
+      container: this.element,
+      style: 'mapbox://styles/pdunleav/cjofefl7u3j3e2sp0ylex3cyb',
+      // center: [lat, long],
+      // zoom: 9,
     });
     this.#addMarkersToMap()
   }
