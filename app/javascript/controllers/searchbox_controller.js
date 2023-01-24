@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'searchbox.searchbox']
 
   connect() {
-    this.overlayTarget.hidden = true
+    // this.overlayTarget.hidden = true
     console.log("searchbox stimulus controller connected")
 
     // this.geocoder = new MapboxGeocoder({
