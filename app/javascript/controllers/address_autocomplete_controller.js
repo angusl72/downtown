@@ -3,7 +3,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 // Connects to data-controller="address-autocomplete"
 export default class extends Controller {
-  static values = { apiKey: String }
+  // static values = { apiKey: String }
 
   static targets = ['imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'address']
 
@@ -11,8 +11,9 @@ export default class extends Controller {
   connect() {
     console.log("address autocomplete stimulus controller connected")
 
+
     this.geocoder = new MapboxGeocoder({
-      accessToken: this.apiKeyValue,
+      accessToken: "pk.eyJ1IjoiYWhtZXRtZW5ldnNlIiwiYSI6ImNsZDJ1Ymh3OTBjNHgzcm9hNTViNXdxY3AifQ.zeq7bHyIs2400GTDmJcJEw",
       types: "address,place"
     })
     this.geocoder.addTo(this.element)
@@ -82,7 +83,6 @@ export default class extends Controller {
         heading = `&heading=${startingHeading+90*(imageNumber - 1)}`
       }
       console.log(heading)
-
       //define the URL for each query
       return `https://maps.googleapis.com/maps/api/streetview?size=640x512${heading}&location=${address}&key=${apiKey}`
     }
@@ -116,7 +116,7 @@ export default class extends Controller {
 
     //display the hidden options
     const optionsContainer = this.optionsContainerTarget
-    this.overlayTarget.hidden = false;
+    // this.overlayTarget.hidden = false;
     optionsContainer.classList.remove('hidden')
 
     document.body.style.overflow = "hidden";

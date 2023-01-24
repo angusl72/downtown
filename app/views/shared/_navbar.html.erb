@@ -1,4 +1,4 @@
-<div>
+<div data-controller="address-autocomplete">
   <%# <div id="overlay" class="z-2 position-absolute" data-searchbox-target="overlay"></div> %>
   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
     <div class="container-fluid">
@@ -12,9 +12,6 @@
 
       <%# <form class="form-inline mt-3 col-4" data-action="submit->searchbox#searchAddress"> %>
         <%= render "shared/address_search", image: @navbar_image %>
-        <div data-controller="address-autocomplete">
-          <div data-address-autocomplete-target="imagesContainer"></div>
-        </div>
 
       <%# </form> %>
 
