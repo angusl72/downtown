@@ -3,18 +3,22 @@ import { Controller } from '@hotwired/stimulus'
 export default class extends Controller {
   static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body']
 
+  // set our API key as a static value from the _navbar.erb file
+  static values = {
+    googleStreetViewApiKey: String,
+  }
+
   connect() {
     this.overlayTarget.hidden = true
     console.log("searchbox stimulus controller connected")
-
   }
 
   searchAddress(event) {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
 
-    const apiKey = 'AIzaSyDb-GlGjN3ftlq0fqbuHmzjwgNdR0P3Wow';
-
+    // grab the api key
+    const apiKey = this.googleStreetViewApiKeyValue;
     const startingHeading = Math.floor(Math.random() * 91)
 
     //define our address
