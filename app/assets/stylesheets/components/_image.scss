@@ -16,6 +16,26 @@
   opacity: 0.7;
 }
 
+.user-informations {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: auto;
+  padding: 5px;
+  height: auto;
+  opacity: 0.9;
+    .user-username{
+      position: relative;
+      width: auto;
+      padding: 5px;
+      height: auto;
+      color: rgb(26, 17, 17) ;
+      font-weight: bold;
+    }
+}
+
 .card-product {
   display: flex;
   justify-content: space-between;

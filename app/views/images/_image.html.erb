@@ -13,19 +13,25 @@
             <% else %>
               <%= link_to (cl_image_tag ("prvluvb2arm6lhic2on9"), width: 330, height: 360, crop: :fill, gravity: "auto", class: "card-img-top"), image_path(image) %>
             <% end %>
-            <div class="carousel-caption d-none d-md-block">
-            </div>
+
             <div class=card-options>
               <% image.options.sample(2).each do |option| %>
                 <p class="img-tag-options"><%= option.capitalize %></p>
               <% end %>
             </div>
+
             <div class="user-informations">
-              <% unless image.user.profile_photo.key == nil %>
-              <%= cl_image_tag image.user.profile_photo.key, style:"width:75px; height: 75px; border-radius:100%" %>
-              <% else %>
-              <%= image_tag "User-avatar.jpg",style:"width:150px; height: 150px" %>
-              <%end %>
+              <div class="user-avatar">
+                <% unless image.user.profile_photo.key == nil %>
+                <%= cl_image_tag image.user.profile_photo.key, style:"width:35px; height: 35px; border-radius:100%" %>
+                <% else %>
+                <%= image_tag "User-avatar.jpg",style:"width:35px; height: 35px; border-radius:100%" %>
+                <%end %>
+              </div>
+
+              <div class="user-username">
+                <%= image.user.username.capitalize %>
+              </div>
             </div>
           </div>
           <div class="carousel-item">
@@ -34,7 +40,19 @@
             <% else %>
             <%= link_to (cl_image_tag ("prvluvb2arm6lhic2on9"), width: 330, height: 360, crop: :fill, gravity: "auto", class: "card-img-top"), image_path(image) %>
             <% end %>
-            <div class="carousel-caption d-none d-md-block">
+
+            <div class="user-informations">
+              <div class="user-avatar">
+                <% unless image.user.profile_photo.key == nil %>
+                <%= cl_image_tag image.user.profile_photo.key, style:"width:35px; height: 35px; border-radius:100%" %>
+                <% else %>
+                <%= image_tag "User-avatar.jpg",style:"width:35px; height: 35px; border-radius:100%" %>
+                <%end %>
+              </div>
+
+              <div class="user-username">
+                <%= image.user.username.capitalize %>
+              </div>
             </div>
           </div>
         </div>
