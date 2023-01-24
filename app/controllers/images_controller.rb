@@ -30,7 +30,7 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     @image.user = current_user
-    raise
+
     # save the image so that the before_photo is attached, otherwise it cannot be accessed.
     @image.save!
 

@@ -65,7 +65,7 @@ export default class extends Controller {
     query.setAttribute("id", "address");
     query.classList.add("my-2")
 
-    query.textContent = `📍 ${address}`
+    query.insertAdjacentHTML("beforeend", `<i class="fa-solid fa-location-dot"></i> ${address}`);
 
     //append address
     imagesContainer.appendChild(query)
