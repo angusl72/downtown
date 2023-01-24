@@ -1,9 +1,13 @@
 <div class="container mt-5">
-  <h2> <%= @user.username.capitalize %> profile</h2>
+  <h2> <%= @user.username.capitalize %>'s profile</h2>
   <div class="user-details">
     <div class="d-flex flex-row">
       <div class="profile-photo m-5">
-        <%= image_tag "", class: "fa-solid fa-user fa-3x", id: "navbarDropdown" %>
+        <% unless @user.profile_photo.key == nil %>
+        <%= cl_image_tag @user.profile_photo.key, style:"width:150px; height: 150px; border-radius:100%" %>
+        <% else %>
+         <%= image_tag "User-avatar.jpg",style:"width:150px; height: 150px" %>
+        <%end %>
       </div>
 
       <div class="d-flex flex-column">
@@ -11,14 +15,19 @@
           <%= @user.username.capitalize %>
         </div>
 
-        <div class="user-city">
+        <div class="user-city mb-5">
           <i class="fa-solid fa-location-dot"></i> <%= @user.city.capitalize %>
         </div>
+
+        <h6>
+          <%= pluralize(@user.comments.size, "Comment") %> |
+          <%= pluralize(@user.images.size, "Image") %>
+        </h6>
       </div>
     </div>
   </div>
 
-  <h2 class="text-center"><%= @user.username.capitalize %> streets</h2>
+  <h2 class="text-center"><%= @user.username.capitalize %>'s Streets</h2>
   <div class="user-images">
     <div class="cards d-flex">
       <%= render "image" %>
