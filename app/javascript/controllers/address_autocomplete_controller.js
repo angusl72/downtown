@@ -5,18 +5,17 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 export default class extends Controller {
   // static values = { apiKey: String }
 
-  static targets = ['imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'address']
+  static targets = ['imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'address', 'navSearchContainer']
 
 
   connect() {
     console.log("address autocomplete stimulus controller connected")
 
-
     this.geocoder = new MapboxGeocoder({
       accessToken: "pk.eyJ1IjoiYWhtZXRtZW5ldnNlIiwiYSI6ImNsZDJ1Ymh3OTBjNHgzcm9hNTViNXdxY3AifQ.zeq7bHyIs2400GTDmJcJEw",
       types: "address,place"
     })
-    this.geocoder.addTo(this.element)
+    this.geocoder.addTo(this.navSearchContainerTarget)
     this.geocoder.on("result", event => this.#setInputValue(event))
 
     this.geocoder.on("result", event => console.log(event))

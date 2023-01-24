@@ -8,12 +8,14 @@
       <form class="form-inline mb-2" data-action="submit->searchbox#searchAddress">
         <input data-searchbox-target="addressQuery" class="form-control me-2 navbar-form" type="text" placeholder="Type an address..." aria-label="Search">
       </form> %>
-
-
-      <%# <form class="form-inline mt-3 col-4" data-action="submit->searchbox#searchAddress"> %>
+      <div data-address-autocomplete-target="navSearchContainer" class="col-6 d-flex">
         <%= render "shared/address_search", image: @navbar_image %>
+      </div>
 
-      <%# </form> %>
+      <%# <form class="form-inline mt-3 col-4" data-action="submit->searchbox#searchAddress">
+
+
+      </form> %>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

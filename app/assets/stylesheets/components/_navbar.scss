@@ -55,14 +55,10 @@
   margin-left: -25%;
   top: 10px;
 }
-.mapboxgl-ctrl-geocoder {
+.mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
   min-width: 100%;
+  margin-bottom: 0;
 }
 #map {
   margin-top: 75px;
-}
-
-
-.address-search {
-  width: 100px;
 }
