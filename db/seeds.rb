@@ -35,7 +35,7 @@ puts "Test User Created"
       user_id: user.id,
       image_saved: true,
       address: Faker::Address.full_address,
-      options: Array.new([%w[trees bicycle cafe green mural].sample]),
+      options: Array.new([["Green trees","Trees", "Bicycles", "Bike Lanes", "Cafe", "Park", "Colour", "Pedestrians", "Snow", "Greenery"].sample]),
       before_photo_base_url: [
         "https://maps.googleapis.com/maps/api/streetview?size=640x512&location=161%20Richardson%20St&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
         "https://maps.googleapis.com/maps/api/streetview?size=640x512&location=13%20rickard%20ave&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
