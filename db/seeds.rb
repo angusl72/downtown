@@ -1,4 +1,5 @@
 # NOTE need to disable after_create :attach_before_photo in the model before running seed
+# This is because this file is attaching before photos manually
 
 puts "Cleaning users.."
 User.destroy_all
@@ -380,3 +381,4 @@ puts ""
 puts "-----------------"
 puts "---------FINISHED SEEDS!---------"
 puts "-----------------"
+puts "DONT FORGET TO UNCOMMENT after_create :attach_before_photo in images.rb"
