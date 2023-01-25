@@ -8,7 +8,7 @@
         <div class="card-body">
           <h5 class="card-title">Options</h5>
           <p class="card-text">Should we add a breif description info here so it doesnt look as bare of what this is and to save or regenerate?</p>
-          <p class="card-text"><small class="text-muted">Image address to go here?</small></p>
+          <p class="card-text"><small class="text-muted"><i class="fa-solid fa-location-dot"></i> <%=  %></small></p>
           <% @image.options.each do |option| %>
             <p class="img-tag-options mt-2"><%= option.capitalize %></p>
           <% end %>
