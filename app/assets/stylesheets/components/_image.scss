@@ -91,6 +91,7 @@ img.slider-image {
   border-radius: 1rem;
   --position: 50%;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border: var(--bs-border-color-translucent) solid 1px;
 }
 
 .image-container {
