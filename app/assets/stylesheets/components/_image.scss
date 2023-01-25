@@ -2,8 +2,6 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  background-image: cover;
-  min-width: 380px;
 }
 .card-options {
   display: inline-block;
@@ -164,8 +162,4 @@ img.slider-image {
 
 .side-card-color {
   background-color: #f0f2f5;
-}
-
-.center-div {
-
 }
