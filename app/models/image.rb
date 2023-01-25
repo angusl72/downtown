@@ -34,15 +34,15 @@ class Image < ApplicationRecord
     request["Accept"] = "application/json"
 
     options = {
-      cfg_scale: 7,
-      clip_guidance_preset: "FAST_BLUE",
+      cfg_scale: 16,
+      clip_guidance_preset: "NONE",
       height: 512,
-      sampler: "K_DPM_2_ANCESTRAL",
+      # sampler: "K_DPM_2_ANCESTRAL",
       samples: 1,
       seed: 0,
       step_schedule_end: 0.01,
       step_schedule_start: 0.4,
-      steps: 25,
+      steps: 100,
       text_prompts: [
         {
           text: self.options.join(" "),

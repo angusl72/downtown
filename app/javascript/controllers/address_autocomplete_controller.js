@@ -5,7 +5,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 export default class extends Controller {
   // static values = { apiKey: String }
 
-  static targets = ['imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'address', 'navSearchContainer']
+  static targets = ['imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'address', 'navSearchContainer', 'addressHiddenInput']
 
 
   connect() {
@@ -26,6 +26,7 @@ export default class extends Controller {
 
   #setInputValue(event) {
     this.addressTarget.value = event.result["place_name"]
+    this.addressHiddenInputTarget.value = event.result["place_name"]
     // console.log(event.result["place_name"])
     this.searchAddress(event.result["place_name"])
     // let searchboxController = this.application.getControllerForElementAndIdentifier(this.#searchboxTarget, 'searchbox')

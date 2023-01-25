@@ -1,4 +1,6 @@
 <%= simple_form_for image do |f| %>
+  <%= f.input :address, label: false,
+      input_html: {data: {address_autocomplete_target: "addressHiddenInput"}, class: "d-none"} %>
   <div data-address-autocomplete-target="imagesContainer"></div>
   <%= f.input :options, :label => "Select your design options",
               as: :check_boxes,

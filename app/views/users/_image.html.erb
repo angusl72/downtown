@@ -1,5 +1,5 @@
 <div class="cards">
-  <% @user.images.each_with_index do |image, i| %>
+  <% @user.images.where(image_saved: true).each_with_index do |image, i| %>
     <div id="carouselExampleIndicators<%= i %>" class="carousel slide" data-bs-ride="false">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators<%= i %>" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
