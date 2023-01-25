@@ -1,12 +1,15 @@
 .cards {
   display: grid;
-  grid-gap:17px;
-  margin: 30px;
+  grid-gap:16px;
+  margin: 32px;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
 }
 .index-card {
-  min-height: 360px;
-  min-width: 400px;
+  max-width: 640px;
+  max-height: 512px;
+  min-width: 225px;
+  min-height: 180px;
+  aspect-ratio: 1.25/1;
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
