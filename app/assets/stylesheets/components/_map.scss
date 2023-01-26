@@ -1,0 +1,24 @@
+.map {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border: var(--bs-border-color-translucent) solid 1px;
+  border-radius: 1rem !important;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 1em !important;
+  border: var(--bs-border-color-translucent) solid 1px;
+  img {
+    border-radius: 1em;
+    border: var(--bs-border-color-translucent) solid 1px;
+  }
+}
+
+.mapboxgl-popup-content a {
+  outline: none;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}

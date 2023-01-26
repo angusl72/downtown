@@ -1,0 +1,6 @@
+<%= simple_form_for image do |f| %>
+    <%= f.input :address, label: false,
+      input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"}
+    %>
+    <%= f.button :submit, 'Submit', class: "btn-primary d-none" %>
+<% end %>

@@ -1,12 +1,13 @@
-<div data-controller="searchbox" data-searchbox-google-street-view-api-key-value="<%= ENV['GOOGLE_STREET_VIEW_API_KEY'] %>">
-  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
-  <div id="overlay" class="z-2 position-absolute" data-searchbox-target="overlay"></div>
+<div data-controller="address-autocomplete">
+  <%# <div id="overlay" class="z-2 position-absolute" data-searchbox-target="overlay"></div> %>
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
     <div class="container-fluid">
       <%= link_to "Downtown.ai", root_path, class: "navbar-brand" %>
 
-      <form class="form-inline mb-2" data-action="submit->searchbox#searchAddress">
-        <input data-searchbox-target="addressQuery" class="form-control me-2 navbar-form" type="text" placeholder="Type an address..." aria-label="Search">
-      </form>
+
+      <div data-address-autocomplete-target="navSearchContainer" class="col-6 d-flex">
+        <%= render "shared/address_search", image: @navbar_image %>
+      </div>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,7 +43,7 @@
       </div>
     </div>
   </div>
-  <div data-searchbox-target="searchOverlayContainer" class="overlay overlay-content">
+  <div data-address-autocomplete-target="searchOverlayContainer" class="overlay overlay-content">
     <%= render "shared/searchbox" %>
   </div>
 </div>

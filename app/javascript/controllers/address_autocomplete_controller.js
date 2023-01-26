@@ -1,30 +1,59 @@
-import { Controller } from '@hotwired/stimulus'
+import { Controller } from "@hotwired/stimulus"
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
+// Connects to data-controller="address-autocomplete"
 export default class extends Controller {
-  static values = { apiKey: String }
-  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'searchbox.searchbox']
+  // static values = { apiKey: String }
 
-  // set our API key as a static value from the _navbar.erb file
-  static values = {
-    googleStreetViewApiKey: String,
-  }
+  static targets = ['imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'address', 'navSearchContainer', 'addressHiddenInput']
+
 
   connect() {
-    // this.overlayTarget.hidden = true
-    console.log("searchbox stimulus controller connected")
+    console.log("address autocomplete stimulus controller connected")
+
+    this.geocoder = new MapboxGeocoder({
+      accessToken: "pk.eyJ1IjoiYWhtZXRtZW5ldnNlIiwiYSI6ImNsZDJ1Ymh3OTBjNHgzcm9hNTViNXdxY3AifQ.zeq7bHyIs2400GTDmJcJEw",
+      types: "address,place"
+    })
+    this.geocoder.addTo(this.navSearchContainerTarget)
+    this.geocoder.on("result", event => this.#setInputValue(event))
+
+    this.geocoder.on("result", event => console.log(event))
+
+    this.geocoder.on("clear", () => this.#clearInputValue())
+
+  }
+
+  #setInputValue(event) {
+    this.addressTarget.value = event.result["place_name"]
+    this.addressHiddenInputTarget.value = event.result["place_name"]
+    // console.log(event.result["place_name"])
+    this.searchAddress(event.result["place_name"])
+    // let searchboxController = this.application.getControllerForElementAndIdentifier(this.#searchboxTarget, 'searchbox')
+    // searchboxController.searchAddress(event)
+
+  }
+
+  #clearInputValue() {
+    this.addressTarget.value = ""
+  }
+
+  disconnect() {
+    this.geocoder.onRemove()
   }
 
   searchAddress(event) {
-    event.preventDefault()
-    console.log(this.addressQueryTarget.value)
+    console.log("hello")
+    // event.preventDefault()
+    console.log(this.addressTarget.value)
+    console.log(this.imagesContainerTarget)
 
-    // grab the api key
-    const apiKey = this.googleStreetViewApiKeyValue;
+    const apiKey = 'AIzaSyDb-GlGjN3ftlq0fqbuHmzjwgNdR0P3Wow';
+
     const startingHeading = Math.floor(Math.random() * 91)
 
     //define our address
-    const address = this.addressQueryTarget.value
+    const address = this.addressTarget.value
 
     //define our imagesContainer
     const imagesContainer = this.imagesContainerTarget
@@ -33,10 +62,10 @@ export default class extends Controller {
 
     //Add the address query
     const query = document.createElement('div')
-    query.setAttribute("id", "addressQuery");
+    query.setAttribute("id", "address");
     query.classList.add("my-2")
 
-    query.textContent = `<i class="fa-solid fa-location-dot"></i> ${address}`
+    query.insertAdjacentHTML("beforeend", `<i class="fa-solid fa-location-dot"></i> ${address}`);
 
     //append address
     imagesContainer.appendChild(query)
@@ -54,7 +83,6 @@ export default class extends Controller {
         heading = `&heading=${startingHeading+90*(imageNumber - 1)}`
       }
       console.log(heading)
-
       //define the URL for each query
       return `https://maps.googleapis.com/maps/api/streetview?size=640x512${heading}&location=${address}&key=${apiKey}`
     }
@@ -88,7 +116,7 @@ export default class extends Controller {
 
     //display the hidden options
     const optionsContainer = this.optionsContainerTarget
-    this.overlayTarget.hidden = false;
+    // this.overlayTarget.hidden = false;
     optionsContainer.classList.remove('hidden')
 
     document.body.style.overflow = "hidden";
@@ -99,4 +127,5 @@ export default class extends Controller {
     this.overlayTarget.hidden = true
     this.searchOverlayContainerTarget.classList.remove('open')
   }
+
 }
