@@ -59,9 +59,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_114620) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "image_saved", default: false
-    t.string "before_photo_base_url"
     t.float "latitude"
     t.float "longitude"
+    t.string "before_photo_base_url"
     t.boolean "image_private", default: false
     t.text "custom_option", default: "f"
     t.index ["user_id"], name: "index_images_on_user_id"
