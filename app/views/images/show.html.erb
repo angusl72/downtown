@@ -1,4 +1,4 @@
-<div class="container-fluid image-fluid-container px-5">
+<div class="container-fluid image-fluid-container px-5 mb-5">
 
   <div class="row m-2">
 
@@ -25,7 +25,7 @@
               data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
             <% end %>
           </div>
-          <p class="card-text"><i class="fa-solid fa-location-dot"></i> <%= @image.user.city %></p>
+          <p class="card-text"><i class="fa-solid fa-location-dot"></i> <%= @image.user.city.capitalize %></p>
           <h5 class="card-title"><strong>Options</strong></h5>
           <% @image.options.each do |option| %>
             <p class="img-tag-options mt-2"><%= option.capitalize %></p>

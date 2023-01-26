@@ -5,15 +5,18 @@
   background-image: cover;
   min-width: 380px;
 }
-.card-options {
-  display: inline-block;
+.img-info {
   position: absolute;
-  right: 4px;
-  top: 4px;
+  border: #7E73FF;
+  right: 8px;
+  top: 8px;
   width: auto;
-  padding: 5px;
   height: auto;
-  opacity: 0.7;
+  font-size: 1rem;
+  border-radius: 50rem;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #665A48;
 }
 
 .user-informations {
@@ -23,16 +26,18 @@
   left: 4px;
   top: 4px;
   width: auto;
-  padding: 5px;
+  padding: 5px 8px;
   height: auto;
-  opacity: 0.9;
     .user-username{
       position: relative;
       width: auto;
-      padding: 5px;
       height: auto;
-      color: rgb(26, 17, 17) ;
-      font-weight: bold;
+      font-size: 1rem;
+      padding: 5px;
+      border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0.5);
+      color: #665A48;
+
     }
 }
 
