@@ -6,6 +6,14 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def edit_profile_photo?
+    user == record
+  end
+
+  def update_profile_photo?
+    true
+  end
+
   def show?
     true
   end
