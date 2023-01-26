@@ -50,7 +50,6 @@ def create_user(object)
     username: object[:username],
     city: object[:city]
   )
-
   puts "User #{user.username} Created"
 end
 

@@ -1,12 +1,13 @@
-<div data-controller="searchbox">
-  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
-  <div id="overlay" class="z-2 position-absolute" data-searchbox-target="overlay"></div>
+<div data-controller="address-autocomplete">
+  <%# <div id="overlay" class="z-2 position-absolute" data-searchbox-target="overlay"></div> %>
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
     <div class="container-fluid">
       <%= link_to "Downtown.ai", root_path, class: "navbar-brand" %>
 
-      <form class="form-inline mb-2" data-action="submit->searchbox#searchAddress">
-        <input data-searchbox-target="addressQuery" class="form-control me-2 navbar-form" type="text" placeholder="Type an address..." aria-label="Search">
-      </form>
+
+      <div data-address-autocomplete-target="navSearchContainer" class="col-6 d-flex">
+        <%= render "shared/address_search", image: @navbar_image %>
+      </div>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,8 +16,15 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
           <% if user_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to "Home", root_path, class: "nav-link" %>
+          </li>
             <li class="nav-item dropdown">
-              <%= image_tag "", class: "fa-solid fa-user", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% unless current_user.profile_photo.key == nil %>
+              <%= cl_image_tag current_user.profile_photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% else %>
+              <%= image_tag "User-avatar.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown nav-drop", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%end %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Profile", user_path(@current_user), class: "dropdown-item" %>
                 <%= link_to "Another action", "#", class: "dropdown-item" %>
@@ -35,7 +43,7 @@
       </div>
     </div>
   </div>
-  <div data-searchbox-target="searchOverlayContainer" class="overlay overlay-content">
+  <div data-address-autocomplete-target="searchOverlayContainer" class="overlay overlay-content">
     <%= render "shared/searchbox" %>
   </div>
 </div>

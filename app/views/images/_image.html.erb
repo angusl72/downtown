@@ -9,9 +9,9 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <% unless image.after_photo.key == nil %>
-              <%= link_to (cl_image_tag image.after_photo.key, width: 330, height: 360, crop: :fill, gravity: "auto",class: "card-img-top", :alt=>"Street View Image for #{image.address}"), image_path(image) %>
+              <%= link_to (cl_image_tag image.after_photo.key, width: 450, height: 360, crop: :fill, gravity: "auto",class: "slider-image", :alt=>"Street View Image for #{image.address}"), image_path(image) %>
             <% else %>
-              <%= link_to (cl_image_tag ("prvluvb2arm6lhic2on9"), width: 330, height: 360, crop: :fill, gravity: "auto", class: "card-img-top"), image_path(image) %>
+              <%= link_to (cl_image_tag ("prvluvb2arm6lhic2on9"), width: 450, height: 360, crop: :fill, gravity: "auto", class: "slider-image"), image_path(image) %>
             <% end %>
             <div class="carousel-caption d-none d-md-block">
               <h5>After</h5>
@@ -24,9 +24,9 @@
           </div>
           <div class="carousel-item">
             <% unless image.before_photo.key == nil %>
-            <%= link_to (cl_image_tag (image.before_photo.key), width: 330, height: 360, crop: :fill, gravity: "auto", class: "card-img-top", :alt=>"Modified Street View Image for #{image.address}"), image_path(image)%>
+            <%= link_to (cl_image_tag (image.before_photo.key), width: 450, height: 360, crop: :fill, gravity: "auto", class: "slider-image", :alt=>"Modified Street View Image for #{image.address}"), image_path(image)%>
             <% else %>
-            <%= link_to (cl_image_tag ("prvluvb2arm6lhic2on9"), width: 330, height: 360, crop: :fill, gravity: "auto", class: "card-img-top"), image_path(image) %>
+            <%= link_to (cl_image_tag ("prvluvb2arm6lhic2on9"), width: 450, height: 360, crop: :fill, gravity: "auto", class: "slider-image"), image_path(image) %>
             <% end %>
             <div class="carousel-caption d-none d-md-block">
               <h5>Before</h5>

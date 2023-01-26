@@ -7,6 +7,9 @@
   flex-grow: 0;
 }
 
+.nav-item {
+  padding-right: 15px;
+}
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
@@ -35,13 +38,37 @@
   filter: alpha(opacity=80);
 }
 
+.mapboxgl-ctrl-geocoder {
+  max-width: none;
+  width: 100%;
+  border: 1px solid lightgrey;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+
+.geocoder {
+  position: absolute;
+  z-index: 1;
+  width: 50%;
+  left: 50%;
+  margin-left: -25%;
+  top: 10px;
+}
+
+.mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+  min-width: 100%;
+  margin-bottom: 0;
+  background-color: rgba(126,115,255, 0.1);
+}
+
+#map {
+  margin-top: 75px;
+}
+
 .sticky-top {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1;
-}
-
-body {
-  padding-top: 56px;
 }

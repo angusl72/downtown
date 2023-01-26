@@ -2,8 +2,6 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  background-image: cover;
-  min-width: 380px;
 }
 .card-options {
   display: inline-block;
@@ -92,12 +90,15 @@ img.slider-image {
   overflow: hidden;
   border-radius: 1rem;
   --position: 50%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border: var(--bs-border-color-translucent) solid 1px;
 }
 
 .image-container {
   max-width: 850px;
   max-height: 90vh;
   aspect-ratio: 1.25/1;
+
 }
 
 .slider-image {
