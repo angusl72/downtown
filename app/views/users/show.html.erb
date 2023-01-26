@@ -8,8 +8,12 @@
         <% else %>
          <%= image_tag "User-avatar.jpg",style:"width:150px; height: 150px" %>
         <%end %>
+        <div class="edit-button">
+          <% if policy(@user).edit_profile_photo? %>
+            <%= link_to "", edit_profile_photo_image_user_path(current_user), class: "fas fa-user-edit fa-lg" %>
+          <% end %>
+        </div>
       </div>
-
       <div class="d-flex flex-column">
         <div class="username py-4">
           <%= @user.username.capitalize %>

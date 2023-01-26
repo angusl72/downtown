@@ -43,6 +43,25 @@
   top: 12px;
 }
 
+.profile-photo {
+  position: relative;
+}
+
+.edit-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.edit-button a {
+  color: rgb(117, 116, 116);
+}
+
+.edit-button a:hover {
+  color: rgb(29, 29, 29);
+}
+
+
 .comments-container {
   max-height: 500px
 }
