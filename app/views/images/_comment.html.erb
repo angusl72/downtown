@@ -1,11 +1,11 @@
 <div class="overflow-auto comments-container">
   <% @image.comments.each do |comment| %>
-    <div class="card mb-4">
+    <div class="card mb-4 comment-card">
       <div class="card-body">
         <p><%= comment.text %></p>
         <div class="d-flex justify-content-between">
           <div class="d-flex flex-row align-items-center">
-            <p class="small mb-0"><%= comment.user.username.capitalize %></p>
+            <p class="small mb-0 text-decoration-none"><%= link_to comment.user.username.capitalize, user_path(comment.user.id) %></p>
           </div>
         </div>
       </div>

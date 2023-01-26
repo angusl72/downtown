@@ -1,20 +1,26 @@
 import { Controller } from '@hotwired/stimulus'
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 export default class extends Controller {
-  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body']
+  static values = { apiKey: String }
+  static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'searchbox.searchbox']
+
+  // set our API key as a static value from the _navbar.erb file
+  static values = {
+    googleStreetViewApiKey: String,
+  }
 
   connect() {
-    this.overlayTarget.hidden = true
+    // this.overlayTarget.hidden = true
     console.log("searchbox stimulus controller connected")
-
   }
 
   searchAddress(event) {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
 
-    const apiKey = 'AIzaSyDb-GlGjN3ftlq0fqbuHmzjwgNdR0P3Wow';
-
+    // grab the api key
+    const apiKey = this.googleStreetViewApiKeyValue;
     const startingHeading = Math.floor(Math.random() * 91)
 
     //define our address
@@ -30,7 +36,7 @@ export default class extends Controller {
     query.setAttribute("id", "addressQuery");
     query.classList.add("my-2")
 
-    query.textContent = `📍 ${address}`
+    query.textContent = `<i class="fa-solid fa-location-dot"></i> ${address}`
 
     //append address
     imagesContainer.appendChild(query)

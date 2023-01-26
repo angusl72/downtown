@@ -8,6 +8,12 @@ Rails.application.routes.draw do
       get :generated
       patch :generated, to: 'images#save_image'
     end
+    resources :users do
+      member do
+        get :edit_profile_photo
+        patch :update_profile_photo
+      end
+    end
   end
     resources :comments, only: :destroy
     resources :users, only: :show
