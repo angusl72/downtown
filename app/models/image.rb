@@ -5,7 +5,7 @@ class Image < ApplicationRecord
   has_one_attached :before_photo
   has_one_base64_attached :after_photo
   # data validations - TO DO
-  after_create :attach_before_photo
+  # after_create :attach_before_photo
 
   # Geocoding
   geocoded_by :address # tells geocoder gem which column to use
