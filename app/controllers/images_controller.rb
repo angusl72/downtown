@@ -12,14 +12,21 @@ class ImagesController < ApplicationController
   def show
     @comment = Comment.new
     authorize @image
-    # @markers = @image.geocoded.map do |image|
-    #   {
-    #     lat: image.latitude,
-    #     lng: image.longitude,
-    #     info_window_html: render_to_string(partial: "info_window", locals: {image: image}),
-    #     marker_html: render_to_string(partial: "marker")
-    #   }
-    # end
+
+    # generate coordinates for our markers
+    @images = Image.all # TODO: adjust to return closes 10-20 (@image.nearbys(20))
+    @all_markers = @images.geocoded.map do |img|
+      {
+        lat: img.latitude,
+        lng: img.longitude,
+        info_window: render_to_string(partial: "popup", locals: { image: img }) # needs to be a string of HTML
+      }
+    end
+    @image_marker = [{
+      lat: @image.latitude,
+      lng: @image.longitude,
+      info_window: render_to_string(partial: "popup", locals: { image: @image })
+    }]
   end
 
   def new

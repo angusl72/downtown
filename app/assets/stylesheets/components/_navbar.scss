@@ -7,6 +7,9 @@
   flex-grow: 0;
 }
 
+.nav-item {
+  padding-right: 15px;
+}
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
@@ -35,6 +38,7 @@
   filter: alpha(opacity=80);
 }
 
+<<<<<<< HEAD
 .mapboxgl-ctrl-geocoder {
   max-width: none;
   width: 100%;
@@ -60,4 +64,15 @@
 }
 #map {
   margin-top: 75px;
+}
+
+.sticky-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+body {
+  padding-top: 56px;
 }

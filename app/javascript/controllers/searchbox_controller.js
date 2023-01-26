@@ -5,40 +5,22 @@ export default class extends Controller {
   static values = { apiKey: String }
   static targets = ['addressQuery', 'imagesContainer', 'optionsContainer', 'searchOverlayContainer', 'closeButton', 'overlay', 'body', 'searchbox.searchbox']
 
+  // set our API key as a static value from the _navbar.erb file
+  static values = {
+    googleStreetViewApiKey: String,
+  }
+
   connect() {
     // this.overlayTarget.hidden = true
     console.log("searchbox stimulus controller connected")
-
-    // this.geocoder = new MapboxGeocoder({
-    //   accessToken: this.apiKeyValue,
-    //   types: "address,place"
-    // })
-    // this.geocoder.addTo(this.element)
-    // // this.geocoder.on("result", event => this.#setInputValue(event))
-    // // this.geocoder.on("clear", () => this.#clearInputValue())
-
-
-  }
-
-  #setInputValue(event) {
-    this.addressTarget.value = event.result["place_name"]
-    console.log(event.result["place_name"])
-  }
-
-  #clearInputValue() {
-    this.addressTarget.value = ""
-  }
-
-  disconnect() {
-    this.geocoder.onRemove()
   }
 
   searchAddress(event) {
     event.preventDefault()
     console.log(this.addressQueryTarget.value)
 
-    const apiKey = 'AIzaSyDb-GlGjN3ftlq0fqbuHmzjwgNdR0P3Wow';
-
+    // grab the api key
+    const apiKey = this.googleStreetViewApiKeyValue;
     const startingHeading = Math.floor(Math.random() * 91)
 
     //define our address

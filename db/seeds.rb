@@ -33,9 +33,9 @@ puts "Test User Created"
   2.times do
     image = Image.create!(
       user_id: user.id,
-      address: ["161 Richardson St", "13 rickard ave", "20 canning st", "103 canning st", "20 collins st"].sample,
-      options: Array.new([%w[trees bicycle cafe green mural].sample]),
       image_saved: true,
+      address: Faker::Address.full_address,
+      options: Array.new([["Green trees","Trees", "Bicycles", "Bike Lanes", "Cafe", "Park", "Colour", "Pedestrians", "Snow", "Greenery"].sample]),
       before_photo_base_url: [
         "https://maps.googleapis.com/maps/api/streetview?size=640x512&location=161%20Richardson%20St&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
         "https://maps.googleapis.com/maps/api/streetview?size=640x512&location=13%20rickard%20ave&key=#{ENV['GOOGLE_STREET_VIEW_API_KEY']}",
@@ -49,7 +49,7 @@ puts "Test User Created"
 
     puts "Before photo attached:  #{image.before_photo.attached?}"
 
-    # After photo
+    # After photo - note, we attach photos manually here so we don't have to call our stable diffusion API every time.
     image.after_photo.attach(io: File.open(Rails.root.join("app/assets/images/#{rand(1..5)}-2.jpg")), filename: "#{image.id}-after.jpg")
     image.save!
     puts "After photo attached: #{image.after_photo.attached?}"

@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_114620) do
     t.float "latitude"
     t.float "longitude"
     t.boolean "image_private", default: false
-    t.text "custom_option"
+    t.text "custom_option", default: "f"
     t.index ["user_id"], name: "index_images_on_user_id"
   end
 

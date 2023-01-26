@@ -5,14 +5,18 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array
+    allMarkers: Array,
+    imageMarker: Array
   }
   connect() {
+    console.log("connected to map controller")
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
-      container: 'this.element',
-      style: 'mapbox://styles/mapbox/streets-v10',
+      container: this.element,
+      style: 'mapbox://styles/pdunleav/cjofefl7u3j3e2sp0ylex3cyb',
+      center: [this.imageMarkerValue[0].lng, this.imageMarkerValue[0].lat],
+      zoom: 9,
     });
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
@@ -29,18 +33,20 @@ export default class extends Controller {
   }
 
   #addMarkersToMap() {
-    this.markersValue.forEach((marker) => {
-      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
+    this.allMarkersValue.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+      new mapboxgl.Marker()
+      .setLngLat([ marker.lng, marker.lat ])
+      .setPopup(popup)
+      .addTo(this.map)
+    })
 
-      // Create a HTML element for your custom marker
-      const customMarker = document.createElement("div")
-      customMarker.innerHTML = marker.marker_html
-
-      // Pass the element as an argument to the new marker
-      new mapboxgl.Marker(customMarker)
-        .setLngLat([marker.lng, marker.lat])
-        .setPopup(popup)
-        .addTo(this.map)
+    this.imageMarkerValue.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+      new mapboxgl.Marker()
+      .setLngLat([ marker.lng, marker.lat ])
+      .setPopup(popup)
+      .addTo(this.map)
     })
   }
 }
