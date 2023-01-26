@@ -1,0 +1,10 @@
+<div class="flex">
+
+  <p class="card-text"><i class="fa-solid fa-location-dot"></i> <%= image.address %></p>
+
+  <%= link_to (cl_image_tag image.after_photo.key, width: 200, height: 170, crop: :fill, gravity: "auto",class: "card-img-top", :alt=>"Street View Image for #{image.address}"), image_path(image) %>
+
+  <% image.options.each do |option| %>
+              <p class="img-tag-options mt-2"><%= option.capitalize %></p>
+  <% end %>
+</div>

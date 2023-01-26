@@ -1,10 +1,10 @@
-<div class="container-fluid image-fluid-container px-5">
+<div class="container-fluid image-fluid-container px-5 mb-5">
 
   <div class="row m-2">
 
     <div class="col-12 col-lg-8 mt-3">
       <%= render "imageslider" %>
-      <div class="row mt-5">
+      <div class="row mt-4">
         <div class="col-12">
           <%= render "map", all_markers: @all_markers, image_marker: @image_marker %>
         </div>
@@ -25,7 +25,7 @@
               data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
             <% end %>
           </div>
-          <p class="card-text"><i class="fa-solid fa-location-dot"></i> <%= @image.user.city %></p>
+          <p class="card-text"><i class="fa-solid fa-location-dot"></i> <%= @image.user.city.capitalize %></p>
           <h5 class="card-title"><strong>Options</strong></h5>
           <% @image.options.each do |option| %>
             <p class="img-tag-options mt-2"><%= option.capitalize %></p>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="col-12 mt-3">
-      <div class="card shadow-0 border side-card-color">
+      <div class="card shadow-0 side-card-color">
         <div class="card-body p-4">
           <h5 class="card-title"><strong>Comments</strong></h5>
           <div class="form-outline mb-4">

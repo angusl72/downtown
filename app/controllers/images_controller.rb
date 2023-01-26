@@ -18,12 +18,14 @@ class ImagesController < ApplicationController
     @all_markers = @images.geocoded.map do |img|
       {
         lat: img.latitude,
-        lng: img.longitude
+        lng: img.longitude,
+        info_window: render_to_string(partial: "popup", locals: { image: img }) # needs to be a string of HTML
       }
     end
     @image_marker = [{
       lat: @image.latitude,
-      lng: @image.longitude
+      lng: @image.longitude,
+      info_window: render_to_string(partial: "popup", locals: { image: @image })
     }]
   end
 

@@ -2,18 +2,41 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  background-image: cover;
-  min-width: 380px;
 }
-.card-options {
-  display: inline-block;
+.img-info {
   position: absolute;
-  right: 4px;
+  border: #7E73FF;
+  right: 8px;
+  top: 8px;
+  width: auto;
+  height: auto;
+  font-size: 1rem;
+  border-radius: 50rem;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #665A48;
+}
+
+.user-informations {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 4px;
   top: 4px;
   width: auto;
-  padding: 5px;
+  padding: 5px 8px;
   height: auto;
-  opacity: 0.7;
+    .user-username{
+      position: relative;
+      width: auto;
+      height: auto;
+      font-size: 1rem;
+      padding: 5px;
+      border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0.5);
+      color: #665A48;
+
+    }
 }
 
 .card-product {
@@ -44,6 +67,25 @@
   right: 12px;
   top: 12px;
 }
+
+.profile-photo {
+  position: relative;
+}
+
+.edit-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.edit-button a {
+  color: rgb(117, 116, 116);
+}
+
+.edit-button a:hover {
+  color: rgb(29, 29, 29);
+}
+
 
 .comments-container {
   max-height: 500px
@@ -92,12 +134,15 @@ img.slider-image {
   overflow: hidden;
   border-radius: 1rem;
   --position: 50%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border: var(--bs-border-color-translucent) solid 1px;
 }
 
 .image-container {
   max-width: 850px;
   max-height: 90vh;
   aspect-ratio: 1.25/1;
+
 }
 
 .slider-image {

@@ -1,0 +1,13 @@
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-4 col-sm-offset-4">
+      <div class="form-login">
+        <%= form_with model: @user, url: update_profile_photo_image_user_path, method: :patch, multipart: true do |f| %>
+          <div class="form-group">
+            <%= f.label :profile_photo, class: "text-center my-3" %>
+            <%= f.file_field :profile_photo %>
+          </div>
+          <%= f.submit "Update Profile Photo", class: "btn btn-primary mt-3" %>
+        <% end %>
+    </div>
+  </div>
+</div>

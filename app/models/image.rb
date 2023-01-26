@@ -11,7 +11,7 @@ class Image < ApplicationRecord
   geocoded_by :address # tells geocoder gem which column to use
   after_validation :geocode, if: :will_save_change_to_address? # runs geocode conversion if address saved.
 
-  OPTIONS = ["Trees", "Bicycles", "Cafe", "Greenery", "Mural", "Colour", "Flowers", "Colourful Lights", "Snow"]
+  OPTIONS = ["Green trees", "Bicycles", "Bike Lanes", "Cafe", "Park", "Colour", "Pedestrians", "Snow", "Greenery", "Christmas time"]
 
   def attach_before_photo
     before_photo_data = URI.parse(before_photo_base_url).open
@@ -35,15 +35,15 @@ class Image < ApplicationRecord
     request["Accept"] = "application/json"
 
     options = {
-      cfg_scale: 7,
-      clip_guidance_preset: "FAST_BLUE",
+      cfg_scale: 16,
+      clip_guidance_preset: "NONE",
       height: 512,
-      sampler: "K_DPM_2_ANCESTRAL",
+      # sampler: "K_DPM_2_ANCESTRAL",
       samples: 1,
       seed: 0,
       step_schedule_end: 0.01,
       step_schedule_start: 0.4,
-      steps: 25,
+      steps: 100,
       text_prompts: [
         {
           text: self.options.join(" "),
