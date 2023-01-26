@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
 
   before_action :image_for_navbar_search
 
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
+
   private
 
   def image_for_navbar_search
