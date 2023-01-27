@@ -43,7 +43,7 @@ class Image < ApplicationRecord
       seed: 0,
       step_schedule_end: 0.01,
       step_schedule_start: 0.4,
-      steps: 100,
+      steps: 102,
       text_prompts: [
         {
           text: self.options.join(" "),
@@ -52,6 +52,10 @@ class Image < ApplicationRecord
         {
           text: self.custom_option,
           weight: 1
+        },
+        {
+          text: "disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, ugly, disgusting, poorly drawn, childish, mutilated, mangled, old, surreal",
+          weight: -1
         }
       ],
       width: 512
