@@ -52,28 +52,16 @@ class Image < ApplicationRecord
         #   weight: 1
         # },
         {
-<<<<<<< HEAD
-          text: self.options.join(" "),
-          weight: 10
-=======
           text: "A photo of a street with great urban design and #{self.options.join(', ')}",
-          weight: 1
->>>>>>> master
+          weight: 10
         },
         {
           text: self.custom_option,
           weight: 10
         }
-<<<<<<< HEAD
         # {
         #   text: "disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, ugly, disgusting, poorly drawn, childish, mutilated, mangled, old, surreal",
         #   weight: -2
-=======
-        # Add in negative prompt - use negative weight
-        # {
-        #   text: "car, cars, disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, mutated, extra limb, blurry, malformed hands, blur, out of focus",
-        #   weight: -0.1
->>>>>>> master
         # }
       ],
       width: 512
