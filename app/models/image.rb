@@ -14,8 +14,10 @@ class Image < ApplicationRecord
   OPTIONS = ["Green trees", "Bicycles", "Bike Lanes", "Cafe", "Park", "Colour", "Pedestrians", "Snow", "Greenery", "Christmas time"]
 
   def attach_before_photo
-    before_photo_data = URI.parse(before_photo_base_url).open
-    before_photo.attach(io: before_photo_data, filename: "before_photo_#{id}.jpg")
+    unless self.before_photo.attached?
+      before_photo_data = URI.parse(before_photo_base_url).open
+      before_photo.attach(io: before_photo_data, filename: "before_photo_#{id}.jpg")
+    end
   end
 
   def generate_image_variations
