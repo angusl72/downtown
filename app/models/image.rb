@@ -11,7 +11,7 @@ class Image < ApplicationRecord
   geocoded_by :address # tells geocoder gem which column to use
   after_validation :geocode, if: :will_save_change_to_address? # runs geocode conversion if address saved.
 
-  OPTIONS = ["Green trees", "Bicycles", "Bike Lanes", "Cafe", "Park", "Colour", "Pedestrians", "Snow", "Greenery", "Christmas time"]
+  OPTIONS = ["Trees", "Bicycle Lanes", "Cafes", "Parkspace", "Colour", "Pedestrians", "Snow", "Street Furniture", "Cyclists", "Greenspace", "Christmas time"]
 
   def attach_before_photo
     unless self.before_photo.attached?
@@ -48,13 +48,18 @@ class Image < ApplicationRecord
       steps: 100,
       text_prompts: [
         {
-          text: self.options.join(" "),
+          text: "A photo of a street with great urban design and #{self.options.join(', ')}",
           weight: 1
         },
         {
           text: self.custom_option,
           weight: 1
         }
+        # Add in negative prompt - use negative weight
+        # {
+        #   text: "car, cars, disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, mutated, extra limb, blurry, malformed hands, blur, out of focus",
+        #   weight: -0.1
+        # }
       ],
       width: 512
     }
