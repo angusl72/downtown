@@ -37,28 +37,43 @@ class Image < ApplicationRecord
     request["Accept"] = "application/json"
 
     options = {
-      cfg_scale: 16,
-      clip_guidance_preset: "NONE",
+      cfg_scale: 15,
+      clip_guidance_preset: "FAST_BLUE",
       height: 512,
-      # sampler: "K_DPM_2_ANCESTRAL",
+      sampler: "K_DPMPP_2S_ANCESTRAL",
       samples: 1,
       seed: 0,
       step_schedule_end: 0.01,
       step_schedule_start: 0.4,
-      steps: 100,
+      steps: 102,
       text_prompts: [
+        # {
+        #   text: "a real life picture of a street with good urban design",
+        #   weight: 1
+        # },
         {
+<<<<<<< HEAD
+          text: self.options.join(" "),
+          weight: 10
+=======
           text: "A photo of a street with great urban design and #{self.options.join(', ')}",
           weight: 1
+>>>>>>> master
         },
         {
           text: self.custom_option,
-          weight: 1
+          weight: 10
         }
+<<<<<<< HEAD
+        # {
+        #   text: "disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, ugly, disgusting, poorly drawn, childish, mutilated, mangled, old, surreal",
+        #   weight: -2
+=======
         # Add in negative prompt - use negative weight
         # {
         #   text: "car, cars, disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, mutated, extra limb, blurry, malformed hands, blur, out of focus",
         #   weight: -0.1
+>>>>>>> master
         # }
       ],
       width: 512

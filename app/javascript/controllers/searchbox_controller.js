@@ -79,7 +79,7 @@ export default class extends Controller {
     imagesContainer.appendChild(imagesSubContainer)
 
     //display the hidden searchbox overlay
-    // this.searchOverlayContainerTarget.classList.remove('hidden')
+    this.searchOverlayContainerTarget.classList.remove('hidden')
     this.searchOverlayContainerTarget.classList.add('open')
 
 

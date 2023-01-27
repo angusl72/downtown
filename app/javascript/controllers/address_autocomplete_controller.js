@@ -9,6 +9,7 @@ export default class extends Controller {
 
 
   connect() {
+    this.overlayTarget.hidden = true
     console.log("address autocomplete stimulus controller connected")
 
     this.geocoder = new MapboxGeocoder({
@@ -116,7 +117,7 @@ export default class extends Controller {
 
     //display the hidden options
     const optionsContainer = this.optionsContainerTarget
-    // this.overlayTarget.hidden = false;
+    this.overlayTarget.hidden = false;
     optionsContainer.classList.remove('hidden')
 
     document.body.style.overflow = "hidden";

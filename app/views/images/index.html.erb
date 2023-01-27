@@ -3,14 +3,14 @@
 <head>
 
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path("cover_image.jpg") %>);">
-  <div class="container">
+  <div class="container text-center">
     <h1>Reimagine your city</h1>
     <p>Reimagining urban design, one streetscape at a time, with the help of image-generation AI</p>
   </div>
 </div>
 
 
-<div>
+<div class="overlay-z-index">
   <%= render "image", images: @images %>
 </div>
 

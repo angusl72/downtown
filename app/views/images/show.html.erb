@@ -2,15 +2,19 @@
 <% content_for :meta_description, "Reimagined #{@image.address}" %>
 <% content_for :meta_image, cl_image_path(@image.after_photo.key) %>
 
-<div class="container-fluid image-fluid-container px-5 my-5">
+<div class="container-fluid image-fluid-container px-5">
 
   <div class="row m-2">
+
     <div class="col-12 col-lg-8 mt-3">
       <%= render "imageslider" %>
-        <div class="col-12 col-lg-8">
+      <div class="row mt-2">
+        <div class="col-12">
           <%= render "map", all_markers: @all_markers, image_marker: @image_marker %>
         </div>
-    </div>
+      </div>
+
+  </div>
 
   <div class="col-12 col-lg-4 mt-3">
 

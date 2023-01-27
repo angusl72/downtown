@@ -66,11 +66,10 @@
 
 // Searchbox overlay
 .overlay {
-	position: fixed;
-	width: 75%;
+	position: absolute;
+	width: 85%;
 	height: 75%;
-	top: 5%;
-	left: 12.5%;
+  margin-left: 8%;
 }
 
 /* Overlay closing cross */
