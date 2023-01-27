@@ -25,7 +25,7 @@
 
         <h6>
           <%= pluralize(@user.comments.size, "Comment") %> |
-          <%= pluralize(@user.images.size, "Image") %>
+          <%= pluralize(@user.images.where(image_saved: true).size, "Image") %>
         </h6>
       </div>
     </div>
