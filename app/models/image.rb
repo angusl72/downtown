@@ -11,11 +11,13 @@ class Image < ApplicationRecord
   geocoded_by :address # tells geocoder gem which column to use
   after_validation :geocode, if: :will_save_change_to_address? # runs geocode conversion if address saved.
 
-  OPTIONS = ["Green trees", "Bicycles", "Bike Lanes", "Cafe", "Park", "Colour", "Pedestrians", "Snow", "Greenery", "Christmas time"]
+  OPTIONS = ["Trees", "Bicycle Lanes", "Cafes", "Parkspace", "Colour", "Pedestrians", "Snow", "Street Furniture", "Cyclists", "Greenspace", "Christmas time"]
 
   def attach_before_photo
-    before_photo_data = URI.parse(before_photo_base_url).open
-    before_photo.attach(io: before_photo_data, filename: "before_photo_#{id}.jpg")
+    unless self.before_photo.attached?
+      before_photo_data = URI.parse(before_photo_base_url).open
+      before_photo.attach(io: before_photo_data, filename: "before_photo_#{id}.jpg")
+    end
   end
 
   def generate_image_variations
@@ -50,16 +52,28 @@ class Image < ApplicationRecord
         #   weight: 1
         # },
         {
+<<<<<<< HEAD
           text: self.options.join(" "),
           weight: 10
+=======
+          text: "A photo of a street with great urban design and #{self.options.join(', ')}",
+          weight: 1
+>>>>>>> master
         },
         {
           text: self.custom_option,
           weight: 10
         }
+<<<<<<< HEAD
         # {
         #   text: "disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, ugly, disgusting, poorly drawn, childish, mutilated, mangled, old, surreal",
         #   weight: -2
+=======
+        # Add in negative prompt - use negative weight
+        # {
+        #   text: "car, cars, disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, mutated, extra limb, blurry, malformed hands, blur, out of focus",
+        #   weight: -0.1
+>>>>>>> master
         # }
       ],
       width: 512
