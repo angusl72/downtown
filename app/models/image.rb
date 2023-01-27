@@ -46,7 +46,7 @@ class Image < ApplicationRecord
       steps: 102,
       text_prompts: [
         {
-          text: self.options.join(" "),
+          text: "a photo of a street with good urban design featuring " + self.options.join(" "),
           weight: 1
         },
         {
