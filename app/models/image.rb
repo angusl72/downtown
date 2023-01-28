@@ -48,7 +48,7 @@ class Image < ApplicationRecord
       steps: 102,
       text_prompts: [
         {
-          text: "A photo of an architectural street with great urban design ",
+          text: "A photo of a beautiful architectural street with great urban design ",
           weight: 0.5
         },
         {
