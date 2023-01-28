@@ -53,15 +53,15 @@ class Image < ApplicationRecord
         # },
         {
           text: "A photo of a street with great urban design and #{self.options.join(', ')}",
-          weight: 10
+          weight: 1
         },
         {
           text: self.custom_option,
-          weight: 10
+          weight: 1
         }
         # {
-        #   text: "disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, ugly, disgusting, poorly drawn, childish, mutilated, mangled, old, surreal",
-        #   weight: -2
+        #   text: "disfigured, ugly, , boring, oversaturated, low-res, blurry, blurry, blur",
+        #   weight: -1
         # }
       ],
       width: 512
