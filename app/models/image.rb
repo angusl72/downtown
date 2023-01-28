@@ -52,7 +52,7 @@ class Image < ApplicationRecord
         #   weight: 1
         # },
         {
-          text: "A photo of a street with great urban design and #{self.options.join(', ')}",
+          text: "A photo of an architectural street with great urban design and #{self.options.join(', ')}",
           weight: 1
         },
         {
