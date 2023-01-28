@@ -47,12 +47,12 @@ class Image < ApplicationRecord
       step_schedule_start: 0.4,
       steps: 102,
       text_prompts: [
-        # {
-        #   text: "a real life picture of a street with good urban design",
-        #   weight: 1
-        # },
         {
-          text: "A photo of an architectural street with great urban design and #{self.options.join(', ')}",
+          text: "A photo of an architectural street with great urban design ",
+          weight: 0.5
+        },
+        {
+          text: self.options.join(', '),
           weight: 1
         },
         {
