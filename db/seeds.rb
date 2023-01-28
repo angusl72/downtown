@@ -198,7 +198,7 @@ a.save
 object = {
   full_address: "641 Kingsway Gymea, New South Wales",
   options: %w[],
-  image_name: "miranda park",
+  image_name: "Miranda park",
 
   comment_one: "Cool 😎",
   comment_two: "That is one big skate park"
