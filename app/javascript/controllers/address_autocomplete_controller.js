@@ -12,7 +12,8 @@ export default class extends Controller {
     this.overlayTarget.hidden = true
     this.geocoder = new MapboxGeocoder({
       accessToken: "pk.eyJ1IjoiYWhtZXRtZW5ldnNlIiwiYSI6ImNsZDJ1Ymh3OTBjNHgzcm9hNTViNXdxY3AifQ.zeq7bHyIs2400GTDmJcJEw",
-      types: "address,place"
+      types: "address,place",
+      placeholder: "Enter a street to reimagine"
     })
 
     this.geocoder.addTo(this.navSearchContainerTarget)
