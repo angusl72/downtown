@@ -14,10 +14,11 @@ class Image < ApplicationRecord
   OPTIONS = ["Trees", "Bicycle Lanes", "Cafes", "Parkspace", "Colour", "Pedestrians", "Snow", "Street Furniture", "Cyclists", "Greenspace", "Christmas time"]
 
   def attach_before_photo
-    unless self.before_photo.attached?
-      before_photo_data = URI.parse(before_photo_base_url).open
-      before_photo.attach(io: before_photo_data, filename: "before_photo_#{id}.jpg")
-    end
+    return if before_photo.attached?
+
+    uri = URI(before_photo_base_url)
+    before_photo_data = Net::HTTP.get(uri)
+    before_photo.attach(io: StringIO.new(before_photo_data), filename: "before_photo_#{id}.jpg")
   end
 
   def generate_image_variations
@@ -59,6 +60,39 @@ class Image < ApplicationRecord
     request = Net::HTTP::Post.new(url)
     request["Authorization"] = ENV.fetch("STABILITY_AI_KEY")
     request["Accept"] = "application/json"
+
+    options = {
+      cfg_scale: 15,
+      clip_guidance_preset: "FAST_BLUE",
+      height: 512,
+      sampler: "K_DPMPP_2S_ANCESTRAL",
+      samples: 1,
+      seed: 0,
+      step_schedule_end: 0.01,
+      step_schedule_start: 0.4,
+      steps: 102,
+      text_prompts: [
+        {
+          text: "A photo of a beautiful architectural street with great urban design ",
+          weight: 0.5
+        },
+        {
+          text: self.options.join(', '),
+          weight: 1
+        },
+        {
+          text: self.custom_option,
+          weight: 1
+        }
+        # {
+        #   text: "disfigured, ugly, , boring, oversaturated, low-res, blurry, blurry, blur",
+        #   weight: -1
+        # }
+      ],
+      width: 512
+    }
+
+    form_data = [['init_image', image.to_blob], ['options', options.to_json]]
 
     request.set_form form_data, 'multipart/form-data'
     response = https.request(request)
