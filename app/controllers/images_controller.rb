@@ -3,10 +3,8 @@ class ImagesController < ApplicationController
   before_action :set_image, only: %i[show edit update destroy generated save_image]
 
   def index
-    # Added .order here to show the newest ones first
-    # also added a .limit, so we're not rendering too many images at once
-    # TODO: also need to add some logic here that only shows SAVED photos from user
-    @images = policy_scope(Image).order(created_at: :desc).limit(40).where(image_saved: true, image_private: false)
+    @images = policy_scope(Image).order(created_at: :desc).where(image_saved: true, image_private: false).page params[:page]
+    # @images = policy_scope(Image).order(created_at: :desc).limit(40).where(image_saved: true, image_private: false)
   end
 
   def show

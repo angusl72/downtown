@@ -91,3 +91,6 @@ end
 gem "cloudinary" #, "~> 1.12.0"
 # can upload photos from backend with Cloudinary::Uploader.upload('file.jpg')
 # also use <%= cl_image_tag(id, width, etc)
+
+# kaminario - pagination gem
+gem 'kaminari'

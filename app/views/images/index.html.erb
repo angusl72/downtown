@@ -10,12 +10,12 @@
   </div>
 </div>
 
-
 <div class="overlay-z-index">
   <%= render "image", images: @images %>
+  <div class="d-flex justify-content-center">
+    <%= paginate @images %>
+  </div>
 </div>
-
-
 
 </head>
 </html>
