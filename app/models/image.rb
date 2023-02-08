@@ -14,10 +14,11 @@ class Image < ApplicationRecord
   OPTIONS = ["Trees", "Bicycle Lanes", "Cafes", "Parkspace", "Colour", "Pedestrians", "Snow", "Street Furniture", "Cyclists", "Greenspace", "Christmas time"]
 
   def attach_before_photo
-    unless self.before_photo.attached?
-      before_photo_data = URI.parse(before_photo_base_url).open
-      before_photo.attach(io: before_photo_data, filename: "before_photo_#{id}.jpg")
-    end
+    return if before_photo.attached?
+
+    uri = URI(before_photo_base_url)
+    before_photo_data = Net::HTTP.get(uri)
+    before_photo.attach(io: StringIO.new(before_photo_data), filename: "before_photo_#{id}.jpg")
   end
 
   def generate_image_variations

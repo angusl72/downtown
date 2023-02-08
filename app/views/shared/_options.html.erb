@@ -10,6 +10,11 @@
               <div class="col-12 d-flex justify-content-center">
   <%= f.input :custom_option, placeholder: 'Enter a custom option', label: false, input_html: { class: "form-control options-search" } %>
               </div>
-
-  <%= f.button :submit, 'Be inspired', class: "btn-primary text-white" %>
+  <% if user_signed_in? %>
+    <%= f.button :submit, 'Be inspired', class: "btn-primary text-white" %>
+  <% else %>
+    <p>Create an account or login to generate an image</p>
+    <%= link_to "Signup", new_user_registration_path, class: "btn btn-light mx-2"%>
+    <%= link_to "Login", new_user_session_path, class: "btn btn-light mx-2"%>
+  <% end %>
 <% end %>

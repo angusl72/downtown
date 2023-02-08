@@ -10,17 +10,15 @@ export default class extends Controller {
 
   connect() {
     this.overlayTarget.hidden = true
-    console.log("address autocomplete stimulus controller connected")
-
     this.geocoder = new MapboxGeocoder({
       accessToken: "pk.eyJ1IjoiYWhtZXRtZW5ldnNlIiwiYSI6ImNsZDJ1Ymh3OTBjNHgzcm9hNTViNXdxY3AifQ.zeq7bHyIs2400GTDmJcJEw",
-      types: "address,place"
+      types: "address,place",
+      placeholder: "Enter a street to reimagine"
     })
+
     this.geocoder.addTo(this.navSearchContainerTarget)
     this.geocoder.on("result", event => this.#setInputValue(event))
-
     this.geocoder.on("result", event => console.log(event))
-
     this.geocoder.on("clear", () => this.#clearInputValue())
 
   }
