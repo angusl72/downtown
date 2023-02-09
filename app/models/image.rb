@@ -103,4 +103,5 @@ class Image < ApplicationRecord
     parsed_response = JSON.parse(response.read_body)
     parsed_response["artifacts"][0]["base64"]
   end
+
 end
