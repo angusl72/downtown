@@ -64,39 +64,6 @@ class Image < ApplicationRecord
     request["Authorization"] = ENV.fetch("STABILITY_AI_KEY")
     request["Accept"] = "application/json"
 
-    options = {
-      cfg_scale: 15,
-      clip_guidance_preset: "FAST_BLUE",
-      height: 512,
-      sampler: "K_DPMPP_2S_ANCESTRAL",
-      samples: 1,
-      seed: 0,
-      step_schedule_end: 0.01,
-      step_schedule_start: 0.4,
-      steps: 102,
-      text_prompts: [
-        {
-          text: "A photo of a beautiful architectural street with great urban design ",
-          weight: 0.5
-        },
-        {
-          text: self.options.join(', '),
-          weight: 1
-        },
-        {
-          text: self.custom_option,
-          weight: 1
-        }
-        # {
-        #   text: "disfigured, ugly, , boring, oversaturated, low-res, blurry, blurry, blur",
-        #   weight: -1
-        # }
-      ],
-      width: 512
-    }
-
-    form_data = [['init_image', image.to_blob], ['options', options.to_json]]
-
     request.set_form form_data, 'multipart/form-data'
     response = https.request(request)
     response.read_body
