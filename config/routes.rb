@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions' }
   root to: "images#index"
   resources :images, except: %i[edit] do
+    get '/page/:page', action: :index, on: :collection
     resources :comments, only: %i[new create]
     member do
       get :generated

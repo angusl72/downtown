@@ -7,6 +7,9 @@ class Image < ApplicationRecord
   # data validations - TO DO
   after_create :attach_before_photo
 
+  # kaminari pagination
+  paginates_per 60 # determines how many posts per page
+
   # Geocoding
   geocoded_by :address # tells geocoder gem which column to use
   after_validation :geocode, if: :will_save_change_to_address? # runs geocode conversion if address saved.

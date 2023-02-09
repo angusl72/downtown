@@ -1,0 +1,9 @@
+<nav>
+  <ul class="pagination">
+    <% paginator.each do |page| %>
+      <li class="page-item <%= "active" if page == current_page %>">
+        <%= link_to page, page, class: "page-link" %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
