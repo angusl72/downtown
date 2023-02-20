@@ -36,11 +36,11 @@ class Image < ApplicationRecord
       ['width', '640'],
       ['height', '512'],
       ['init_image_mode', "IMAGE_STRENGTH"],
-      ['image_strength', '0.7'], # [0..1] How much influence the init_image has on the diffusion process. Values close to 1 will yield images very similar to the init_image while values close to 0 will yield images wildly different than the init_image.
+      ['image_strength', '0.70'], # [0..1] How much influence the init_image has on the diffusion process. Values close to 1 will yield images very similar to the init_image while values close to 0 will yield images wildly different than the init_image.
       ['cfg_scale', '17'], # [0..35] How strictly the diffusion process adheres to the prompt text (higher values keep your image closer to your prompt
       ['sampler', 'K_DPM_2_ANCESTRAL'],
       ['clip_guidance_preset', 'FAST_GREEN'],
-      ['steps', '100'], # [10..150] Number of diffusion steps to run
+      ['steps', '150'], # [10..150] Number of diffusion steps to run
       ['text_prompts[0][text]:', 'A photo of beautiful architectural street with great urban design '],
       ['text_prompts[0][weight]:', '0.5'], # [0..1] How much weighting the prompt will have on the image
       ['text_prompts[3][text]:', 'disfigured, impressionistic'],
